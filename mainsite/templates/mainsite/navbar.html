@@ -1,0 +1,17 @@
+<header>
+    <h1>Chatbot</h1>
+    <nav class="dropdown">
+        {% if 'user_id' in request.session %}
+            <h3>Welcome, {{user.username}}</h3>
+        {% else %}
+            <h3>Welcome, Guest!</h3>
+        {% endif %}
+        <ul class="dropdown_content">
+            {% if 'user_id' in request.session %}
+                <li>Logout</li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login / Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

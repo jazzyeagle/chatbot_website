@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="ChatBot Website">
+        <title>ChatBot Website - Login</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'mainsite/css/default.css' %}">
+        <link rel="stylesheet" href="{% static 'login/css/login.css' %}">
+    </head>
+    <body>
+        {% include 'mainsite/navbar.html' %}
+        <main>
+            <form action="/user/signup/process" method=POST>
+                {% csrf_token %}
+                <h3>Not Signed Up Yet?</h3>
+                <h1>Sign Up Here!!</h1>
+                <div class="row">
+                    <label for="reg_email">Email Address</label>
+                    <input type="email" name="email" id="reg_email">
+                </div>
+                <div class="row">
+                    <label for="reg_username">Desired Username</label>
+                    <input type="text" name="username" id="reg_username">
+                </div>
+                <div class="row">
+                    <label for="reg_password1">Password</label>
+                    <input type="password" name="password1" id="reg_password1">
+                </div>
+                <div class="row">
+                    <label for="reg_password2">ReEnter Password</label>
+                    <input type="password" name="password2" id="reg_password2">
+                </div>
+                <button type="submit">Sign up!</button>
+            </form>
+            <form action="/user/login/process" method=POST>
+                {% csrf_token %}
+                <h3>Already Signed Up?</h3>
+                <h1>Sign In Here!</h1>
+                <div class="row">
+                    <label for="login_username">Email / Username</label>
+                    <input type="text" name="username" id="login_username">
+                </div>
+                <div class="row">
+                    <label for="login_password">Password</label>
+                    <input type="password" name="password" id="login_password">
+                </div>
+                <button type="submit">Log In</button>
+            </form>
+        </main>
+    </body>
+</html>

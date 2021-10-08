@@ -1,0 +1,9 @@
+*/__pycache__/
+*.pyc
+*.txt
+etckid/
+*.sqlite3
+*swp
+.env
+.environment/
+mainsite/static/img/

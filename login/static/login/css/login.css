@@ -1,0 +1,22 @@
+main {
+    display: flex;
+    gap: 5rem;
+    padding: 1rem 5rem;
+}
+
+form h1 {
+    font-size: xxx-large;
+    margin-bottom: 1rem;
+}
+
+form {
+    flex: 1;
+}
+
+label {
+    flex: 1;
+}
+
+button, input, textarea {
+    flex: 3;
+}
