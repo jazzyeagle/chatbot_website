@@ -1,0 +1,29 @@
+.star {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.star input[type="radio"] {
+    display: none;
+}
+
+.star label {
+    font-size: x-large;
+    margin: 0;
+    position: relative;
+}
+
+.star label:hover:before,
+.star label:hover ~ label:before {
+    color:   #664422;
+    content: '\2605';
+    position: absolute;
+    text-shadow: 0.2rem 0.2rem 0.1rem yellow;
+}
+
+.star input[type="radio"]:checked + label:before,
+.star input[type="radio"]:checked ~ label:before {
+    color:   #000000;
+    content: '\2605';
+    position: absolute;
+}

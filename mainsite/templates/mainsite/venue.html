@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="View the songs for the 'Fountain Of Shadows' venue, as improvised by ETC Kid on May 15th, 2021..">
+        <title>ChatBot - Live from 'Fountain Of Shadows' on the 'Sorry For Monologging' Tour</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'mainsite/css/default.css' %}">
+        <link rel="stylesheet" href="{% static 'mainsite/css/venue.css' %}">
+        <link rel="stylesheet" href="{% static 'mainsite/css/star-ratings.css' %}">
+    </head>
+    <body>
+        {% include 'mainsite/navbar.html' %}
+        <h1>Live from 'Fountain Of Shadows'</h1>
+        <h3>on the 'Sorry For Monologging' Tour</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Track #</th>
+                    <th>Title</th>
+                    <th>Length</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Turn The Age</td>
+                    <td>26:42</td>
+                    <td>
+                        <form method=POST action="/Sorry For Monologging/Fountain Of Shadows/Turn The Age/rate" class="star">
+                            <input type="radio" name="rating" id="song1-rating-5">
+                            <label for="song1-rating-5">☆</label>
+                            <input type="radio" name="rating" id="song1-rating-4">
+                            <label for="song1-rating-4">☆</label>
+                            <input type="radio" name="rating" id="song1-rating-3">
+                            <label for="song1-rating-3">☆</label>
+                            <input type="radio" name="rating" id="song1-rating-2">
+                            <label for="song1-rating-2">☆</label>
+                            <input type="radio" name="rating" id="song1-rating-1">
+                            <label for="song1-rating-1">☆</label>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Balancing The Books</td>
+                    <td>10:36</td>
+                    <td>
+                        <form method=POST action="/Sorry For Monologging/Fountain Of Shadows/Turn The Age/rate" class="star">
+                            <input type="radio" name="rating" id="song2-rating-5">
+                            <label for="song2-rating-5">☆</label>
+                            <input type="radio" name="rating" id="song2-rating-4">
+                            <label for="song2-rating-4">☆</label>
+                            <input type="radio" name="rating" id="song2-rating-3">
+                            <label for="song2-rating-3">☆</label>
+                            <input type="radio" name="rating" id="song2-rating-2">
+                            <label for="song2-rating-2">☆</label>
+                            <input type="radio" name="rating" id="song2-rating-1">
+                            <label for="song2-rating-1">☆</label>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="/Sorry For Monologging/Fountain Of Shadows/Fuel on the Fire">
+                            3
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/Sorry For Monologging/Fountain Of Shadows/Fuel on the Fire">
+                            Fuel on the Fire
+                        </a>
+                    <td>
+                        <a href="/Sorry For Monologging/Fountain Of Shadows/Fuel on the Fire">
+                            19:40
+                        </a>
+                    </td>
+                    <td>
+                        <form method=POST action="/Sorry For Monologging/Fountain Of Shadows/Turn The Age/rate" class="star">
+                            <input type="radio" name="rating" id="song3-rating-5">
+                            <label for="song3-rating-5">☆</label>
+                            <input type="radio" name="rating" id="song3-rating-4">
+                            <label for="song3-rating-4">☆</label>
+                            <input type="radio" name="rating" id="song3-rating-3">
+                            <label for="song3-rating-3">☆</label>
+                            <input type="radio" name="rating" id="song3-rating-2">
+                            <label for="song3-rating-2">☆</label>
+                            <input type="radio" name="rating" id="song3-rating-1">
+                            <label for="song3-rating-1">☆</label>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Taking The Day</td>
+                    <td>20:39</td>
+                    <td>
+                        <form method=POST action="/Sorry For Monologging/Fountain Of Shadows/Turn The Age/rate" class="star">
+                            <input type="radio" name="rating" id="song4-rating-5">
+                            <label for="song4-rating-5">☆</label>
+                            <input type="radio" name="rating" id="song4-rating-4">
+                            <label for="song4-rating-4">☆</label>
+                            <input type="radio" name="rating" id="song4-rating-3">
+                            <label for="song4-rating-3">☆</label>
+                            <input type="radio" name="rating" id="song4-rating-2">
+                            <label for="song4-rating-2">☆</label>
+                            <input type="radio" name="rating" id="song4-rating-1">
+                            <label for="song4-rating-1">☆</label>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Road Trip</td>
+                    <td>21:01</td>
+                    <td>
+                        <form method=POST action="/Sorry For Monologging/Fountain Of Shadows/Turn The Age/rate" class="star">
+                            <input type="radio" name="rating" id="song5-rating-5">
+                            <label for="song5-rating-5">☆</label>
+                            <input type="radio" name="rating" id="song5-rating-4">
+                            <label for="song5-rating-4">☆</label>
+                            <input type="radio" name="rating" id="song5-rating-3">
+                            <label for="song5-rating-3">☆</label>
+                            <input type="radio" name="rating" id="song5-rating-2">
+                            <label for="song5-rating-2">☆</label>
+                            <input type="radio" name="rating" id="song5-rating-1">
+                            <label for="song5-rating-1">☆</label>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

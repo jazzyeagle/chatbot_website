@@ -1,0 +1,33 @@
+h3 {
+    margin-bottom: 2.5rem;
+}
+
+table, thead, tbody {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+}
+
+tr {
+    display: flex;
+    margin: 1.0rem auto;
+}
+
+th {
+    background-color: #3B8EA5;
+    color:            #EEB868;
+}
+
+th, td {
+    flex: 1;
+    text-align: center;
+}
+
+td:nth-child(2) {
+    flex: 4;
+    text-align: left;
+}
+
+th:nth-child(2) {
+    flex: 4;
+}
