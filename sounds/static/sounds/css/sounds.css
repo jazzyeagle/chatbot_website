@@ -1,7 +1,7 @@
 table {
-    display: block;
-    margin: 2rem;
+    margin: 0 auto;
     border-collapse: collapse;
+    width: 95%;
 }
 
 thead tr {
@@ -13,20 +13,48 @@ th {
 }
 
 td, th {
+    overflow-wrap: break-word;
     vertical-align: middle;
-    text-align: center;
 }
 
-.name {
-    width: 50%;
-    padding-left: 1rem;
+tr {
+    padding: 0.5rem;
+}
+
+td .name {
     text-align: left;
+    width: 55%;
 }
 
-.demo, .request {
+.demo {
     width: 5%;
 }
 
-.category, .subcategory, .command {
+.category, .subcategory {
+    flex: 2;
+    text-align: center;
     width: 10%;
+}
+
+.request {
+    border-right: 0;
+    width: 8%;
+}
+
+.request2 {
+    border-left: 0;
+    width: 2%;
+}
+
+.rating {
+    padding: 0 auto;
+    width: 10%;
+}
+
+.request_text {
+    padding-left: 0.5rem;
+}
+
+.request_button {
+    padding: 0.5rem;
 }

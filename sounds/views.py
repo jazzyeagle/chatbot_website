@@ -7,7 +7,7 @@ def sounds(request):
     page_data = {
                   'categories': Category.objects.all(),
                   'subcategories': SubCategory.objects.all(),
-                  'sounds': Sound.objects.all()
+                  'sounds': Sound.objects.all()[:100]
                 }
     return render(request, 'sounds/sounds.html', page_data)
 

@@ -7,11 +7,12 @@
         {% load static %}
         <link rel="stylesheet" href="{% static 'mainsite/css/default.css' %}">
         <link rel="stylesheet" href="{% static 'sounds/css/sounds.css' %}">
-    </head>
+        <link rel="stylesheet" href="{% static 'mainsite/css/star-ratings.css' %}">
+    </head>j
     <body>
         {% include 'mainsite/navbar.html' %}
         <form id="form_search" action="{% url 'search_sounds' %}" method=POST>
-            <label for="search_text">Search Criteria </label>
+            <label for="search_text">Filter</label>
             <input name="search_text" id="search_text">
             <select name="search_category" id="search_category">
                 {% for category in categories %}
@@ -32,7 +33,6 @@
                     <th class="demo">Demo</th>
                     <th class="category">Category</th>
                     <th class="subcategory">SubCategory</th>
-                    <th class="command">Chat Command</th>
                     <th class="request">Request</th>
                 </tr>
             </thead>
@@ -43,15 +43,31 @@
                         <td class="demo"><audio></audio></td>
                         <td class="category">{{sound.category.text}}</td>
                         <td class="subcategory">{{sound.subcategory.text}}</td>
-                        <td class="command">
-                            {% if sound.category.text == "Drum Kit" %}
-                                !drumkit {{sound.code}}</td>
-                            {% else %}
-                                !sound {{sound.code}}<?td>
-                            {% endif %}
-                        </td>
                         <td class="request">
-                            <button>Request</button>
+                            <span class="request_text">
+                                {% if sound.category.text == "Drum Kit" %}
+                                    !drumkit {{sound.code}}
+                                {% else %}
+                                    !sound {{sound.code}}
+                                {% endif %}
+                            </span>
+                        </td>
+                        <td class="request2">
+                            <button class="request_button">Request</button>
+                        </td>
+                        <td class="rating">
+                            <form method=POST action="" class="star">
+                                <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-5">
+                                <label for="{{sound.code}}-rating-5">☆</label>
+                                <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-4">
+                                <label for="{{sound.code}}-rating-4">☆</label>
+                                <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-3">
+                                <label for="{{sound.code}}-rating-3">☆</label>
+                                <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-2">
+                                <label for="{{sound.code}}-rating-2">☆</label>
+                                <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-1">
+                                <label for="{{sound.code}}-rating-1">☆</label>
+                            </form>
                         </td>
                     </tr>
                 {% endfor %}
