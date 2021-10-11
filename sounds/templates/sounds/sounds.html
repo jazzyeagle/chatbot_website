@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="View the list of available sounds that you can request for the next show!">
+        <title>ChatBot - Sounds</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'mainsite/css/default.css' %}">
+        <link rel="stylesheet" href="{% static 'sounds/css/sounds.css' %}">
+    </head>
+    <body>
+        {% include 'mainsite/navbar.html' %}
+        <form id="form_search" action="{% url 'search_sounds' %}" method=POST>
+            <label for="search_text">Search Criteria </label>
+            <input name="search_text" id="search_text">
+            <select name="search_category" id="search_category">
+                {% for category in categories %}
+                    <option>{{category.text}}</option>
+                {% endfor %}
+            </select>
+            <select name="search_subcategory" id="search_subcategory">
+                {% for subcategory in subcategories %}
+                    <option>{{subcategory.text}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Search</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="demo">Demo</th>
+                    <th class="category">Category</th>
+                    <th class="subcategory">SubCategory</th>
+                    <th class="command">Chat Command</th>
+                    <th class="request">Request</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sound in sounds %}
+                    <tr id="{{sound.code}}">
+                        <td class="name">{{sound.name}}</td>
+                        <td class="demo"><audio></audio></td>
+                        <td class="category">{{sound.category.text}}</td>
+                        <td class="subcategory">{{sound.subcategory.text}}</td>
+                        <td class="command">
+                            {% if sound.category.text == "Drum Kit" %}
+                                !drumkit {{sound.code}}</td>
+                            {% else %}
+                                !sound {{sound.code}}<?td>
+                            {% endif %}
+                        </td>
+                        <td class="request">
+                            <button>Request</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

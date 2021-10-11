@@ -6,6 +6,8 @@ from sounds.models   import *
 
 # Create your models here.
 class Request(models.Model):
+    class Meta:
+        app_label = 'show'
     user         = models.ForeignKey(User,  on_delete=models.CASCADE)
     sound        = models.ForeignKey(Sound,  on_delete=models.CASCADE)
     created_at   = models.DateTimeField(auto_now_add=True)

@@ -4,6 +4,9 @@ from sounds.models import *
 
 # Create your models here.
 class Tour(models.Model):
+    class Meta:
+        app_label = 'mainsite'
+
     name       = models.TextField()
     named_by   = models.ForeignKey(User,  on_delete=models.CASCADE)
     month      = models.DateField(unique_for_month=True)
@@ -12,6 +15,9 @@ class Tour(models.Model):
 
 
 class Venue(models.Model):
+    class Meta:
+        app_label = 'mainsite'
+
     name       = models.TextField()
     named_by   = models.ForeignKey(User,  on_delete=models.CASCADE)
     venue      = models.ForeignKey(Tour,  on_delete=models.CASCADE)
@@ -21,6 +27,9 @@ class Venue(models.Model):
     
 
 class Song(models.Model):
+    class Meta:
+        app_label = 'mainsite'
+
     name       = models.TextField()
     named_by   = models.ForeignKey(User,  on_delete=models.CASCADE)
     venue      = models.ForeignKey(Venue,  on_delete=models.CASCADE)
@@ -30,6 +39,9 @@ class Song(models.Model):
 
 
 class SongRating(models.Model):
+    class Meta:
+        app_label = 'mainsite'
+
     user_id   = models.ForeignKey(User,  on_delete=models.CASCADE)
     song      = models.ForeignKey(Song,  on_delete=models.CASCADE)
     rating    = models.IntegerField()
