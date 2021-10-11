@@ -1,6 +1,7 @@
 .star {
     display: flex;
     flex-direction: row-reverse;
+    justify-content: space-evenly;
 }
 
 .star input[type="radio"] {

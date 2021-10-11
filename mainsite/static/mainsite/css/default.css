@@ -17,7 +17,7 @@ h1, h2, h3 {
 
 header h1 {
     text-align: left;
-    flex: 10;
+    flex: 8;
 }
 
 header nav {
