@@ -2,16 +2,16 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="View the songs for the 'Fountain Of Shadows' venue, as improvised by ETC Kid on May 15th, 2021..">
-        <title>ChatBot - Live from 'Fountain Of Shadows' on the 'Sorry For Monologging' Tour</title>
+        <meta name="description" content="View info from the song '{{ song.title }}', performed live at the '{{ song.venue.name }}' venue, as improvised by ETC Kid on {{ song.venue.date|date:'Y/m/d'}}.">
+        <title>ChatBot - Live from "{{ song.venue.name }}" on the "{{ song.venue.tour.name }}" Tour</title>
         {% load static %}
         <link rel="stylesheet" href="{% static 'mainsite/css/default.css' %}">
     </head>
     <body>
         {% include 'mainsite/navbar.html' %}
-        <h3>Live from 'Fountain Of Shadows' on the 'Sorry For Monologging' Tour</h3>
-        <h1>Fuel On The Fire</h1>
-        <h3>Named by StaphyGames</h3>
+        <h3>Live from "{{ song.venue.name }}" on the "{{ song.venue.tour.name }}" Tour</h3>
+        <h1>{{ song.title }}</h1>
+        <h3>Named by {{ song.named_by.username }}</h3>
         <h3>Requested Song Details</h3>
         <table id="details">
             <thead>
@@ -22,16 +22,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>BPM</td>
-                    <td>88</td>
-                    <td>DuelElite1</td>
-                </tr>
-                <tr>
-                    <td>Key</td>
-                    <td>A minor</td>
-                    <td>dugDbug</td>
-                </tr>
+                {% for b in Bpm %}
+                    <tr>
+                        <td>BPM</td>
+                        <td>{{ b.text }}</td>
+                        <td>{{ b.requested_by.username }}</td>
+                    </tr>
+                {% endfor %}
+                {% for k in Key %}
+                    <tr>
+                        <td>Key</td>
+                        <td>{{ k.text }}</td>
+                        <td>{{ k.requested_by.username }}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
         <h3>Drums</h3>
@@ -44,67 +48,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Loop</td>
-                    <td>'unactractiveness'</td>
-                    <td>StaphyGames
-                    </td>
-                </tr>
-                <tr>
-                    <td>Loop</td>
-                    <td>'Not_today_Young_one'</td>
-                    <td>Na_Roon</td>
-                </tr>
-                <tr>
-                    <td>Fill</td>
-                    <td>'we_r_all_animals'</td>
-                    <td>StaphyGames
-                </tr>
-                <tr>
-                    <td>Fill</td>
-                    <td>'frighten_travesty'</td>
-                    <td>much0mas</td>
-                </tr>
-                <tr>
-                    <td>Fill</td>
-                    <td>'aimless_babylon'</td>
-                    <td>much0mas</td>
-                </tr>
-                <tr>
-                    <td>Fill</td>
-                    <td>'MrRobertTables'</td>
-                    <td>MrRobertTables</td>
-                </tr>
-                <tr>
-                    <td>Fill</td>
-                    <td>'MrRobertTables'</td>
-                    <td>MrRobertTables</td>
-                </tr>
-                <tr>
-                    <td>Fill</td>
-                    <td>'Poe_In_Lightened'</td>
-                    <td>dugDbug</td>
-                </tr>
-                <tr>
-                    <td>Fill</td>
-                    <td>'BDay'</td>
-                    <td>DomDude64</td>
-                </tr>
-                <tr>
-                    <td>Fill</td>
-                    <td>'one'</td>
-                    <td>DomDude64</td>
-                </tr>
-                <tr>
-                    <td>Fill</td>
-                    <td>Fun_Improve</td>
-                    <td>Na_Roon</td>
-                </tr>
-                <tr>
-                    <td>Fill</td>
-                    <td>'GuyOnASkateboard'</td>
-                    <td>GuyOnASkateboard</td>
-                </tr>
+                {% for loop in Drum_Loops %}
+                    <tr>
+                        <td>Loop</td>
+                        <td>{{ loop.text }}</td>
+                        <td>{{ loop.requested_by.username }}</td>
+                    </tr>
+                {% endfor %}
+                {% for fill in Drum_Fills %}
+                    <tr>
+                        <td>Fill</td>
+                        <td>{{ fill.text }}</td>
+                        <td>{{ fill.requested_by.username }}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
         <h3>Sounds</h3>
@@ -117,41 +74,20 @@
                </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>SoCal Kit</td>
-                    <td>Drumkit</td>
-                    <td>DuelElite1</td>
-                </tr>
-                <tr>
-                    <td>Echolocation Synth</td>
-                    <td>Synth</td>
-                    <td>explodedsoada</td>
-                </tr>
-                <tr>
-                    <td>Solo Cello</td>
-                    <td>Strings</td>
-                    <td>Brukos</td>
-                </tr>
-                <tr>
-                    <td>Massive Grime Bass</td>
-                    <td>Bass</td>
-                    <td>angryCHKN</td>
-                </tr>
-                <tr>
-                    <td>Miming Under The Influence</td>
-                    <td></td>
-                    <td>GuyOnASkateboard</td>
-                </tr>
-                <tr>
-                    <td>No idea?</td>
-                    <td></td>
-                    <td>pete_mouse</td>
-                </tr>
-                <tr>
-                    <td>Justice for Romeo and Juliet</td>
-                    <td></td>
-                    <td>GDBiLL</td>
-                </tr>
+                {% for d in Drumkits %}
+                    <tr>
+                        <td>{{ d.sound.name }}</td>
+                        <td>{{ d.sound.category.text }}</td>
+                        <td>{{ d.sound.requested_by.username }}</td>
+                    </tr>
+                {% endfor %}
+                {% for s in Sounds %}
+                    <tr>
+                        <td>{{ s.sound.name }}</td>
+                        <td>{{ s.sound.category.text }}</td>
+                        <td>{{ s.sound.requested_by.username }}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
         <h3>Instruments</h3>
@@ -159,16 +95,35 @@
             <thead>
                 <tr>
                     <th>Instrument</th>
-                    h>Played By</th>
+                    <th>Played By</th>
                     <th>Chat Vote?</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Otto, Tooby's musical cousin (Otamatone)</td>
-                    <td>ETC KID</td>
-                    <td>Yes</td>
-                </tr>
+                {% for i in Instruments %}
+                    <tr>
+                        <td>{{ i.instrument.name }}
+                        <td>{{ i.played_by.username }}</td>
+                        <td>Yes</td>
+                    </tr>
+                {% endfor %}
             </tbody>
+        </table>
+        <table id="Lyric Inspirations">
+            <thead>
+                <tr>
+                    <th>Lyrical Idea</th>
+                    <th>Submitted By</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for l in Lyric_Inspiration %}
+                    <tr>
+                        <td>{{ l.text }}</td>
+                        <td>{{ l.requested_by.username }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </body>
 </html>
