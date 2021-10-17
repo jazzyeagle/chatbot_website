@@ -8,7 +8,7 @@ def index(request):
 
 
 def tours(request):
-    return render(request, 'mainsite/tours.html', data.tours(request))
+    return render(request, 'mainsite/tour/tours.html', data.tours(request))
 
 
 def venues(request):
@@ -20,15 +20,15 @@ def songs(request):
 
 
 def tour(request, tour_name):
-    return render(request, 'mainsite/tour.html', data.tour(request, tour_name))
+    return render(request, 'mainsite/tour/tour.html', data.tour(request, tour_name))
 
 
 def venue(request, tour_name, venue_name):
-    return render(request, 'mainsite/venue.html', data.venue(request, tour_name, venue_name))
+    return render(request, 'mainsite/venue/venue.html', data.venue(request, tour_name, venue_name))
 
 
 def song(request, tour_name, venue_name, song_name):
-    return render(request, 'mainsite/song.html', data.song(request, tour_name, venue_name, song_name))
+    return render(request, 'mainsite/song/song.html', data.song(request, tour_name, venue_name, song_name))
 
 
 def song_rate(request, tour_name, venue_name, song_name):

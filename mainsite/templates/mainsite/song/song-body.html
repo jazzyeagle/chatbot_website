@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="View info from the song '{{ song.title }}', performed live at the '{{ song.venue.name }}' venue, as improvised by ETC Kid on {{ song.venue.date|date:'Y/m/d'}}.">
-        <title>ChatBot - Live from "{{ song.venue.name }}" on the "{{ song.venue.tour.name }}" Tour</title>
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'mainsite/css/default.css' %}">
-    </head>
-    <body>
-        {% include 'mainsite/navbar.html' %}
         <h3>Live from "{{ song.venue.name }}" on the "{{ song.venue.tour.name }}" Tour</h3>
         <h1>{{ song.title }}</h1>
         <h3>Named by {{ song.named_by.username }}</h3>
@@ -125,5 +114,3 @@
                 {% endfor %}
             </tbody>
         </table>
-    </body>
-</html>

@@ -1,0 +1,47 @@
+header {
+    background-color: #3B8EA5;
+    display:          flex;
+    padding:          2rem;
+}
+
+header h1 {
+    text-align: left;
+    flex: 8;
+}
+
+header nav {
+    flex: 2;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+.dropdown {
+    border-bottom: outset 0.2rem #967969;
+    font-size: larger;
+    position: relative;
+    text-align: center;
+}
+
+.dropdown_content {
+    border: solid 0.1rem #6F4E37;
+    background-color: #EEB868;
+    display:  none;
+    margin-top: 0.5rem;
+    position: absolute;
+    width:    100%
+}
+
+.dropdown:hover .dropdown_content {
+    display: block;
+}
+
+.dropdown_content li {
+    border-bottom: ridge 0.1rem #967969;
+    padding: 0.2rem;
+}
+
+.dropdown_content li:last-of-type {
+    border-bottom: none;
+}

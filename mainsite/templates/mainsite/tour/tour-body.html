@@ -1,0 +1,32 @@
+{% load static %}
+<h1>The "<span>{{ tour.name }}</span>" Tour</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th></th>
+            <th>Venue Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for venue in venues %}
+            <tr>
+                <td>
+                    <a href="{% url 'venue' tour.name venue.name %}">
+                        {{ venue.date|date:"Y/m/d"}}
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'venue' tour.name venue.name %}">
+                        <img src="{% static 'img/{{ venue.name }}/cover.png' %}" alt="Album Cover for '{{ venue.name }}'">
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'venue' tour.name venue.name %}">
+                        {{ venue.name }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
