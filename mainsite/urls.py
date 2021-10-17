@@ -2,11 +2,12 @@ from django.urls import path
 from mainsite.views import *
 
 urlpatterns = [
-                path('',                      index, name='homepage'),
-                path('tours',                 tours, name='tours'),
-                path('venues',                venues, name='venues'),
-                path('songs',                 songs,  name='songs'),
-                path('Sorry For Monologging', tour,  name='tour'),
-                path('Sorry For Monologging/Fountain Of Shadows', venue, name='venue'),
-                path('Sorry For Monologging/Fountain Of Shadows/Fuel on the Fire', song, name='song')
+                path('',                                                      index,       name='homepage'),
+                path('tours',                                                 tours,       name='tours'),
+                path('venues',                                                venues,      name='venues'),
+                path('songs',                                                 songs,       name='songs'),
+                path('<str:tour_name>',                                       tour,        name='tour'),
+                path('<str:tour_name>/<str:venue_name>',                      venue,       name='venue'),
+                path('<str:tour_name>/<str:venue_name>/<str:song_name>',      song,        name='song'),
+                path('<str:tour_name>/<str:venue_name>/<str:song_name>/rate', song_rate,   name='song_rate')
               ]

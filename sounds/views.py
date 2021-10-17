@@ -1,24 +1,28 @@
 from django.shortcuts import render, redirect
-from sounds.models    import *
+
+from result import Result, ResultFlag
+from sounds import data
 
 # Create your views here.
 def sounds(request):
-    num_results = Sound.objects.count() / 10
-    page_data = {
-                  'categories': Category.objects.all(),
-                  'subcategories': SubCategory.objects.all(),
-                  'sounds': Sound.objects.all()[:100]
-                }
-    return render(request, 'sounds/sounds.html', page_data)
+    if 'search' in request.session:
+        page_data = Result(ResultFlag.Ok, request.session['search'])
+    else:
+        page_data = data.sounds(request)
+    if request.method=='POST':
+        page_data = request.POST['']
+    if page_data.isOk:
+        return render(request, 'sounds/sounds.html', page_data.get())
 
 
 def sound(request, sound_code):
-    sound = Sound.objects.get(code=sound_code)
-    page_data = {
-                  'sound': sound
-                }
-    return render(request, 'sounds/sound.html', page_data)
+    page_data = data.sound(request, sound_code)
+    if page_data.isOk:
+        return render(request, 'sounds/sound.html', page_data.get())
 
 
 def search_sounds(request):
-    pass
+    query = data.search_sounds(request)
+    if query.isOk():
+        request.session['search'] = query.get()
+    return redirect('sounds')
