@@ -2,8 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="ChatBot Website">
-        <title>ChatBot</title>
+        <meta name="description" content="View the venues for the '{{ tour.name }}' tour in {{ tour.month|date:'F Y' }}, as improvised by ETC Kid.">
+        <title>ChatBot - The "{{ tour.name }}" Tour</title>
         {% load static %}
         <link rel="stylesheet" href="{% static 'mainsite/css/default.css' %}">
         {% include 'widgets/navbar-head.html' %}
@@ -13,7 +13,7 @@
             {% include 'widgets/navbar-body.html' %}
         </header>
         <main>
-            <a href="/tours">Tours</a>
+            {% include 'mainsite/tour/tour-body.html' %}
         </main>
     </body>
 </html>

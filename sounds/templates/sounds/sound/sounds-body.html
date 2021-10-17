@@ -1,0 +1,66 @@
+<form id="form_search" action="{% url 'search_sounds' %}" method=POST>
+    {% csrf_token %}
+    <label for="search_text">Filter</label>
+    <input name="search_text" id="search_text">
+    <select name="search_category" id="search_category">
+        {% for category in categories %}
+            <option>{{category.text}}</option>
+        {% endfor %}
+    </select>
+    <!--
+    <select name="search_subcategory" id="search_subcategory">
+        {% for subcategory in subcategories %}
+            <option>{{subcategory.text}}</option>
+        {% endfor %}
+    </select>
+    -->
+    <button type="submit">Search</button>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th class="name">Name</th>
+            <th class="demo">Demo</th>
+            <th class="category">Category</th>
+            <th class="subcategory">SubCategory</th>
+            <th class="request">Request</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sound in sounds %}
+            <tr id="{{sound.code}}">
+                <td class="name">{{sound.name}}</td>
+                <td class="demo"><audio></audio></td>
+                <td class="category">{{sound.category.text}}</td>
+                <td class="subcategory">{{sound.subcategory.text}}</td>
+                <td class="request">
+                    <span class="request_text">
+                        {% if sound.category.text == "Drum Kit" %}
+                            !drumkit {{sound.code}}
+                        {% else %}
+                            !sound {{sound.code}}
+                        {% endif %}
+                    </span>
+                </td>
+                <td class="request2">
+                    <button class="request_button">Request</button>
+                </td>
+                <td class="rating">
+                    <form method=POST action="" class="star">
+                        {% csrf_token %}
+                        <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-5">
+                        <label for="{{sound.code}}-rating-5">☆</label>
+                        <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-4">
+                        <label for="{{sound.code}}-rating-4">☆</label>
+                        <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-3">
+                        <label for="{{sound.code}}-rating-3">☆</label>
+                        <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-2">
+                        <label for="{{sound.code}}-rating-2">☆</label>
+                        <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-1">
+                        <label for="{{sound.code}}-rating-1">☆</label>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
