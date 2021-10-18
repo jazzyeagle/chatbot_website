@@ -5,24 +5,23 @@ from sounds import data
 
 # Create your views here.
 def sounds(request):
-    if 'search' in request.session:
-        page_data = Result(ResultFlag.Ok, request.session['search'])
-    else:
-        page_data = data.sounds(request)
-    if request.method=='POST':
-        page_data = request.POST['']
-    if page_data.isOk:
-        return render(request, 'sounds/sounds.html', page_data.get())
+    page_data = data.sounds(request)
+    if page_data.isOk():
+        print(f'Page Data: {page_data.get()}')
+        return render(request, 'sounds/sound/sounds.html', page_data.get())
 
 
 def sound(request, sound_code):
+    print('sound')
     page_data = data.sound(request, sound_code)
-    if page_data.isOk:
-        return render(request, 'sounds/sound.html', page_data.get())
+    if page_data.isOk():
+        return render(request, 'sounds/sound/sound.html', page_data.get())
 
 
-def search_sounds(request):
-    query = data.search_sounds(request)
+def sound_search(request):
+    print('sound_search')
+    query = data.sound_search(request)
     if query.isOk():
+        print(f'Query result: {query.get()}')
         request.session['search'] = query.get()
     return redirect('sounds')

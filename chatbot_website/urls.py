@@ -17,6 +17,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('sounds/', include('sounds.urls')),
-    path('user/', include('login.urls')),
-    path('', include('mainsite.urls'))
+    path('user/',   include('login.urls')),
+    path('',        include('mainsite.urls'))
 ]
