@@ -8,7 +8,9 @@ def index(request):
 
 
 def tours(request):
-    return render(request, 'mainsite/tour/tours.html', data.tours(request))
+    page_data = data.tours(request)
+    if page_data.isOk():
+        return render(request, 'mainsite/tour/tours.html', page_data.get())
 
 
 def venues(request):
@@ -20,15 +22,21 @@ def songs(request):
 
 
 def tour(request, tour_name):
-    return render(request, 'mainsite/tour/tour.html', data.tour(request, tour_name))
+    page_data = data.tour(request, tour_name)
+    if page_data.isOk():
+        return render(request, 'mainsite/tour/tour.html', page_data.get())
 
 
 def venue(request, tour_name, venue_name):
-    return render(request, 'mainsite/venue/venue.html', data.venue(request, tour_name, venue_name))
+    page_data = data.venue(request, tour_name, venue_name)
+    if page_data.isOk():
+        return render(request, 'mainsite/venue/venue.html', page_data.get())
 
 
 def song(request, tour_name, venue_name, song_name):
-    return render(request, 'mainsite/song/song.html', data.song(request, tour_name, venue_name, song_name))
+    page_data = data.song(request, tour_name, venue_name, song_name)
+    if page_data.isOk():
+        return render(request, 'mainsite/song/song.html', page_data.get())
 
 
 def song_rate(request, tour_name, venue_name, song_name):

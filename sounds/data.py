@@ -1,21 +1,32 @@
-from django.db.models import Q
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models       import Q
 
-from sounds.models    import *
-from result import ResultFlag, Result
+from sounds.models          import *
+from result                 import ResultFlag, Result
 
 
 def sounds(request):
+    if 'search' in request.session:
+        search = request.session['search']
+        category = Category.objects.get(text=search['search_category'])
+        sounds = Sound.objects.filter(Q(name__icontains=search['text_filter']) |
+                                      Q(code__icontains=search['text_filter']),
+                                      category=category)
+        request.session.pop('search')
+    else:
+        sounds = Sound.objects.all()[:500]
     return Result(
                    ResultFlag.Ok,
                    {
-                     'categories': Category.objects.all(),
+                     'categories':    Category.objects.all(),
                      'subcategories': SubCategory.objects.all(),
-                     'sounds': Sound.objects.all()[:100]
+                     'sounds':        sounds
                    }
                  )
 
 
 def sound(request, sound_code):
+    print(f'Sound Code: {sound_code}')
     return Result(
                    ResultFlag.Ok,
                    {
@@ -26,17 +37,12 @@ def sound(request, sound_code):
 
 # The search field needs to be able to return results that match either the sound code or part of the sound
 #     name.
-def search_sounds(request):
-    text_filter = request.POST['search_text']
-    category = Category.objects.get(text=request.POST['search_category'])
-    # subcategory = SubCategory.objects.get(text=request.POST['search_subcategory'])
+def sound_search(request):
     return Result(
                    ResultFlag.Ok,
-                   Sound.objects.filter(
-                                         Q(name__icontains=text_filter) | Q(code__icontains=text_filter),
-                                         category=category,
-                                         # subcategory=subcategory
-                                       )
-                 )
+                   {
+                     'text_filter':     request.POST['search_text'],
+                     'search_category': request.POST['search_category']
+                   }
 
-# Need to add JSON serialization to models
+                 )

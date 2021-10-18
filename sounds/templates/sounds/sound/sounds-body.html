@@ -1,8 +1,9 @@
-<form id="form_search" action="{% url 'search_sounds' %}" method=POST>
+<form id="form_search" action="{% url 'sound_search' %}" method=POST>
     {% csrf_token %}
     <label for="search_text">Filter</label>
     <input name="search_text" id="search_text">
     <select name="search_category" id="search_category">
+        <option></option>
         {% for category in categories %}
             <option>{{category.text}}</option>
         {% endfor %}
