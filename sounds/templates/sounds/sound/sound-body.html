@@ -1,0 +1,17 @@
+<h1>{{ sound.name }}</h1>
+<h3>{{ sound.category.text }} {% if sound.subcategory.text != '' %}- {{ sound.subcategory.text}}{% endif %}</h3>
+
+{% if sound.renamed_by %}
+    <p>Named by:  {{sound.renamed_by.username}}</p>
+{% endif %}
+
+<p>This sound has been used on the following {{ requests.count }} tracks:
+<ul>
+    {% for r in requests %}
+        <li>
+            <a href="{% url 'song' r.used_on_track.venue.tour.name r.used_on_track.venue.name r.used_on_track.title %}">
+                "{{ r.used_on_track.title }} ({{ r.used_on_track.venue.date|date:"Y/m/d"}})</li>
+            </a>
+        </li>
+    {% endfor %}
+</ul>

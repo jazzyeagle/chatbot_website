@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Check out some more information about the sound {{ sound.name }} [ {{ sound.code }} ]">
+        <title>ChatBot - {{ sound.name }}</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'mainsite/css/default.css' %}">
+        <link rel="stylesheet" href="{% static 'sounds/css/sounds.css' %}">
+        <link rel="stylesheet" href="{% static 'widgets/css/star-ratings.css' %}">
+        {% include 'widgets/navbar-head.html' %}
+    </head>
+    <body>
+        <header>
+            {% include 'widgets/navbar-body.html' %}
+        </header>
+        <main>
+            {% include 'sounds/sound/sound-body.html' %}
+        </main>
+    </body>
+</html>
