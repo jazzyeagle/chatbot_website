@@ -65,16 +65,32 @@
             <tbody>
                 {% for d in Drumkits %}
                     <tr>
-                        <td>{{ d.sound.name }}</td>
-                        <td>{{ d.sound.category.text }}</td>
-                        <td>{{ d.sound.requested_by.username }}</td>
+                        <td>
+                            <a href="{% url 'sound' d.sound.code %}">
+                                {{ d.sound.name }}
+                            </a>
+                        </td>
+                        <td>
+                                {{ d.sound.category.text }}
+                        </td>
+                        <td>
+                                {{ d.sound.requested_by.username }}
+                        </td>
                     </tr>
                 {% endfor %}
                 {% for s in Sounds %}
                     <tr>
-                        <td>{{ s.sound.name }}</td>
-                        <td>{{ s.sound.category.text }}</td>
-                        <td>{{ s.sound.requested_by.username }}</td>
+                        <td>
+                            <a href="{% url 'sound' s.sound.code %}">
+                                {{ s.sound.name }}
+                            </a>
+                        </td>
+                        <td>
+                                {{ s.sound.category.text }}
+                        </td>
+                        <td>
+                                {{ s.sound.requested_by.username }}
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

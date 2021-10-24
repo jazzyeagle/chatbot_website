@@ -80,16 +80,23 @@ WSGI_APPLICATION = 'chatbot_website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'HOST':   '192.168.1.89',
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':   'chatbot-dev',
-        'USER':   'chatbot',
-        'PASSWORD': 'T4ny4L1nd3r',
-        'TEST':   {
-                    'NAME': 'chatbot-test',
-                  }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+    
+#DATABASES = {
+#    'default': {
+#        'HOST':   '192.168.1.89',
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME':   'chatbot-dev',
+#        'USER':   'chatbot',
+#        'PASSWORD': 'T4ny4L1nd3r',
+#        'TEST':   {
+#                    'NAME': 'chatbot-test',
+#                  }
+#    }
+#}
 
 
 # Password validation

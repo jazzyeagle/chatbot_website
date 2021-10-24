@@ -30,7 +30,7 @@
     <tbody>
         {% for sound in sounds %}
             <tr id="{{sound.code}}">
-                <td class="name">{{sound.name}}</td>
+                <td class="name"><a href="{% url 'sound' sound.code %}">{{sound.name}}</a></td>
                 <td class="demo"><audio></audio></td>
                 <td class="category">{{sound.category.text}}</td>
                 <td class="subcategory">{{sound.subcategory.text}}</td>

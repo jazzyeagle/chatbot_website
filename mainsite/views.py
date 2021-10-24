@@ -4,7 +4,9 @@ from mainsite import data
 
 # Create your views here.
 def index(request):
-    return render(request, 'mainsite/index.html')
+    page_data = data.index(request)
+    if page_data.isOk():
+        return render(request, 'mainsite/index.html', page_data.get())
 
 
 def tours(request):
