@@ -1,5 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.models       import Q
+from django.db.models       import Q, Avg
 
 from login.models           import User
 from show.models            import *
@@ -14,13 +14,16 @@ def sounds(request):
             category = Category.objects.get(text=search['search_category'])
             sounds = Sound.objects.filter(Q(name__icontains=search['text_filter']) |
                                           Q(code__icontains=search['text_filter']),
-                                          category=category)
+                                          category=category).annotate(avg_rating=Avg('ratings__rating')).order_by('name')
         else:
             sounds = Sound.objects.filter(Q(name__icontains=search['text_filter']) |
-                                          Q(code__icontains=search['text_filter']))
+                                          Q(code__icontains=search['text_filter'])).annotate(avg_rating=Avg('ratings__rating')).order_by('name')
+        ratings = {}
         request.session.pop('search')
     else:
-        sounds = Sound.objects.all()[:500]
+        sounds = Sound.objects.all().annotate(avg_rating=Avg('ratings__rating')).order_by('name')[:100]
+    for s in sounds:
+        print(f'{s.name} [{s.code}]: {s.avg_rating}')
     if 'user_id' in request.session:
         user = User.objects.get(id=request.session['user_id'])
     else:
@@ -56,16 +59,29 @@ def sound(request, sound_code):
 # The search field needs to be able to return results that match either the sound code or part of the sound
 #     name.
 def sound_search(request):
-    if 'user_id' in request.session:
-        user = User.objects.get(id=request.session['user_id'])
-    else:
-        user = None
     return Result(
                    ResultFlag.Ok,
                    {
                      'text_filter':     request.POST['search_text'],
                      'search_category': request.POST['search_category'],
-                     'user':            user
                    }
 
                  )
+
+
+
+def sound_rate(request, sound_code):
+    if 'user_id' not in request.session:
+            return Result(ResultFlag.Error, 'You must be logged in if you wish to rate a song.')
+
+    user = User.objects.get(id=request.session['user_id'])
+    sound = Sound.objects.get(code=sound_code)
+    rating = request.POST['rating']
+
+    # We create the rating without the rating being added to ensure that matching for get_or_create will get_or_create
+    #    a rating for the same user & sound, in case user is changing their rating.
+    sound_rating, _ = SoundRating.objects.get_or_create(user=user, sound=sound)
+    sound_rating.rating = rating
+    sound_rating.save()
+
+    return Result(ResultFlag.Ok, None)

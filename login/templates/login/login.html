@@ -34,7 +34,7 @@
                 </div>
                 <button type="submit">Sign up!</button>
             </form>
-            <form action="login_process" method=POST>
+            <form action="{% url 'login_process' %}" method=POST>
                 {% csrf_token %}
                 <h3>Already Signed Up?</h3>
                 <h1>Sign In Here!</h1>
