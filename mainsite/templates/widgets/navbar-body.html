@@ -7,7 +7,7 @@
     {% endif %}
     <ul class="dropdown_content">
         {% if 'user_id' in request.session %}
-            <li>Logout</li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
         {% else %}
             <li><a href="{% url 'login' %}">Login / Register</a></li>
         {% endif %}

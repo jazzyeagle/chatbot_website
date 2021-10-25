@@ -27,3 +27,9 @@ class User(models.Model):
                  'created_at': self.created_at,
                  'updated_at': self.updated_at
                }
+
+class UserPronoun(models.Model):
+    user       = models.ForeignKey(User, on_delete=models.CASCADE)
+    subjective = models.CharField(max_length=10)
+    objective  = models.CharField(max_length=10)
+    possessive = models.CharField(max_length=10)

@@ -1,3 +1,5 @@
+{% load static %}
+<script src="{% static 'sounds/js/sounds.js' %}"></script>
 <form id="form_search" action="{% url 'sound_search' %}" method=POST>
     {% csrf_token %}
     <label for="search_text">Filter</label>
@@ -47,17 +49,26 @@
                     <button class="request_button">Request</button>
                 </td>
                 <td class="rating">
-                    <form method=POST action="" class="star">
+                    <form method=POST action="{% url 'sound_rate' sound.code %}" class="star">
                         {% csrf_token %}
-                        <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-5">
+                        <noscript>
+                            {{ sound.ratings__avg }}
+                            <button type="submit">Rate</button>
+                        </noscript>
+                        <input type="radio" name="rating" id="{{sound.code}}-rating-5" value="5"
+                            {% if sound.avg_rating == 5 %} checked {% endif %}>
                         <label for="{{sound.code}}-rating-5">☆</label>
-                        <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-4">
+                        <input type="radio" name="rating" id="{{sound.code}}-rating-4" value="4"
+                            {% if sound.avg_rating == 4 %} checked {% endif %}>
                         <label for="{{sound.code}}-rating-4">☆</label>
-                        <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-3">
+                        <input type="radio" name="rating" id="{{sound.code}}-rating-3" value="3"
+                            {% if sound.avg_rating == 3 %} checked {% endif %}>
                         <label for="{{sound.code}}-rating-3">☆</label>
-                        <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-2">
+                        <input type="radio" name="rating" id="{{sound.code}}-rating-2" value="2"
+                            {% if sound.avg_rating == 2 %} checked {% endif %}>
                         <label for="{{sound.code}}-rating-2">☆</label>
-                        <input type="radio" name="{{sound.code}}-rating" id="{{sound.code}}-rating-1">
+                        <input type="radio" name="rating" id="{{sound.code}}-rating-1" value="1"
+                            {% if sound.avg_rating == 1 %} checked {% endif %}>
                         <label for="{{sound.code}}-rating-1">☆</label>
                     </form>
                 </td>
@@ -65,3 +76,4 @@
         {% endfor %}
     </tbody>
 </table>
+<script>onPageLoad()</script>

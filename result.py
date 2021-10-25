@@ -25,16 +25,20 @@ class Result:
             return True
         return False
 
-    def isError(self):
+    def hasErrors(self):
         if self.resultType == ResultFlag.Error:
             return True
         return False
 
     def get(self):
-        return self.value
+        if self.resultType == ResultFlag.Ok:
+            return self.value
+        return None
 
     def set(self, new_value):
         self.value = new_value
 
-    def errors(self):
-        return self.errors
+    def getErrors(self):
+        if self.resultType == ResultFlag.Error:
+            return self.errors
+        return None

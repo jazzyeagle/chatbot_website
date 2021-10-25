@@ -66,9 +66,9 @@ class SoundRating(models.Model):
     class Meta:
         app_label = 'sounds'
 
-    user       = models.ForeignKey(User,  on_delete=models.CASCADE)
-    sound      = models.ForeignKey(Sound,  on_delete=models.CASCADE)
-    rating     = models.IntegerField()
+    user       = models.ForeignKey(User,  related_name='ratings', on_delete=models.CASCADE)
+    sound      = models.ForeignKey(Sound, related_name='ratings', on_delete=models.CASCADE)
+    rating     = models.IntegerField(null=True, blank=True)  # Null/Blank allowed based on rating being added after created.
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
