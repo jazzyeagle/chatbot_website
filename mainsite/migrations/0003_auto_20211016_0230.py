@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('sounds', '0003_soundrating_rating'),
-        ('login', '0003_user_saymyname'),
+        ('users', '0003_user_saymyname'),
         ('mainsite', '0002_initial'),
     ]
 
@@ -61,7 +61,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='song',
             name='named_by',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='login.user'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='users.user'),
         ),
         migrations.AlterField(
             model_name='song',
@@ -71,12 +71,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='tour',
             name='named_by',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='login.user'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='users.user'),
         ),
         migrations.AlterField(
             model_name='venue',
             name='named_by',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='login.user'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='users.user'),
         ),
         migrations.CreateModel(
             name='VenueArt',
@@ -87,7 +87,7 @@ class Migration(migrations.Migration):
                 ('year', models.DateField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('found_by', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='login.user')),
+                ('found_by', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='users.user')),
             ],
         ),
     ]

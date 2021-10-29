@@ -1,5 +1,5 @@
 from django.db       import models
-from login.models    import User
+from users.models    import User
 from mainsite.models import *
 from sounds.models   import *
 

@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('login', '0001_initial'),
+        ('users', '0001_initial'),
     ]
 
     operations = [
@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sounds.category')),
-                ('renamed_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='login.user')),
+                ('renamed_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.user')),
             ],
         ),
         migrations.CreateModel(
@@ -61,7 +61,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('sound', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sounds.sound')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='login.user')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.user')),
             ],
         ),
         migrations.AddField(
