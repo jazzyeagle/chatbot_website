@@ -16,11 +16,15 @@ def tours(request):
 
 
 def venues(request):
-    pass
+    page_data = data.venues(request)
+    if page_data.isOk():
+        return render(request, 'mainsite/venue/venues.html', page_data.get())
 
 
 def songs(request):
-    pass
+    page_data = data.songs(request)
+    if page_data.isOk():
+        return render(request, 'mainsite/song/songs.html', page_data.get())
 
 
 def tour(request, tour_name):

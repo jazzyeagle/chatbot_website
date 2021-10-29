@@ -1,132 +1,141 @@
-        <h3>Live from "{{ song.venue.name }}" on the "{{ song.venue.tour.name }}" Tour</h3>
-        <h1>{{ song.title }}</h1>
-        <h3>Named by {{ song.named_by.username }}</h3>
-        <h3>Requested Song Details</h3>
-        <table id="details">
-            <thead>
+<p>Live from "{{ song.venue.name }}" on the "{{ song.venue.tour.name }}" Tour...</p>
+<h1>{{ song.title }}</h1>
+<h2>Named by {{ song.named_by.username }}</h2>
+<h3>Requested Song Details</h3>
+<table id="details">
+    <thead>
+        <tr>
+            <th class="type">Type</th>
+            <th class="value">Value</th>
+            <th class="user">Requested By</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for b in Bpm %}
+            <tr>
+                <td class="type">BPM</td>
+                <td class="value">{{ b.text }}</td>
+                <td class="user">{{ b.requested_by.username }}</td>
+            </tr>
+        {% endfor %}
+        {% for k in Key %}
+            <tr>
+                <td class="type">Key</td>
+                <td class="value">{{ k.text }}</td>
+                <td class="user">{{ k.requested_by.username }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h3>Drums</h3>
+<table id="drums">
+    <thead>
+        <tr>
+            <th class="type">Loop/Fill</th>
+            <th class="value">Phrase</th>
+            <th class="user">Submitted By</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for loop in Drum_Loops %}
+            <tr>
+                <td class="type">Loop</td>
+                <td class="value">"{{ loop.text }}"</td>
+                <td class="user">{{ loop.requested_by.username }}</td>
+            </tr>
+        {% endfor %}
+        {% for fill in Drum_Fills %}
+            <tr>
+                <td class="type">Fill</td>
+                <td class="value">"{{ fill.text }}"</td>
+                <td class="user">{{ fill.requested_by.username }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h3>Sounds</h3>
+<table id="sounds">
+    <thead>
+        <tr>
+            <th class="value">Name</th>
+            <th class="type">Category</th>
+            <th class="type">Subcategory</th>
+            <th class="user">Requested By</th>
+       </tr>
+    </thead>
+    <tbody>
+        {% for d in Drumkit %}
+            <tr>
+                <td class="value">
+                    <a href="{% url 'sound' d.sound.code %}">
+                        {{ d.sound.name }}
+                    </a>
+                </td>
+                <td class="type">
+                        {{ d.sound.category.text }}
+                </td>
+                <td class="type">
+                        {{ d.sound.subcategory.text }}
+                </td>
+                <td class="user">
+                        {{ d.sound.requested_by.username }}
+                </td>
+            </tr>
+        {% endfor %}
+        {% for s in Sounds %}
+            <tr>
+                <td class="value">
+                    <a href="{% url 'sound' s.sound.code %}">
+                        {{ s.sound.name }}
+                    </a>
+                </td>
+                <td class="type">
+                        {{ s.sound.category.text }}
+                </td>
+                <td class="type">
+                        {{ s.sound.subcategory.text }}
+                </td>
+                <td class="user">
+                        {{ s.sound.requested_by.username }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h3>Instruments</h3>
+<table id="instruments">
+    <thead>
+        <tr>
+            <th class="value">Instrument</th>
+            <th class="user">Played By</th>
+            <th class="type">Chat Vote?</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in Instruments %}
+            <tr>
+                <td class="value">{{ i.instrument.name }}
+                <td class="user">{{ i.played_by.username }}</td>
+                <td class="type">Yes</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% if Lyric_Inspiration|length > 0 %}
+    <table id="Lyric Inspirations">
+        <thead>
+            <tr>
+                <th class="value">Lyrical Idea</th>
+                <th class="user">Submitted By</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for l in Lyric_Inspiration %}
                 <tr>
-                    <th>Type</th>
-                    <th>Value</th>
-                    <th>Requested By</th>
+                    <td class="value">"{{ l.text }}"</td>
+                    <td class="user">{{ l.requested_by.username }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for b in Bpm %}
-                    <tr>
-                        <td>BPM</td>
-                        <td>{{ b.text }}</td>
-                        <td>{{ b.requested_by.username }}</td>
-                    </tr>
-                {% endfor %}
-                {% for k in Key %}
-                    <tr>
-                        <td>Key</td>
-                        <td>{{ k.text }}</td>
-                        <td>{{ k.requested_by.username }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <h3>Drums</h3>
-        <table id="drums">
-            <thead>
-                <tr>
-                    <th>Loop/Fill</th>
-                    <th>Phrase</th>
-                    <th>Submitted By</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for loop in Drum_Loops %}
-                    <tr>
-                        <td>Loop</td>
-                        <td>{{ loop.text }}</td>
-                        <td>{{ loop.requested_by.username }}</td>
-                    </tr>
-                {% endfor %}
-                {% for fill in Drum_Fills %}
-                    <tr>
-                        <td>Fill</td>
-                        <td>{{ fill.text }}</td>
-                        <td>{{ fill.requested_by.username }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <h3>Sounds</h3>
-        <table id="sounds">
-            <thead>
-                <tr>
-                    <th>Sound Name</th>
-                    <th>Sound Category</th>
-                    <th>Requested By</th>
-               </tr>
-            </thead>
-            <tbody>
-                {% for d in Drumkits %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'sound' d.sound.code %}">
-                                {{ d.sound.name }}
-                            </a>
-                        </td>
-                        <td>
-                                {{ d.sound.category.text }}
-                        </td>
-                        <td>
-                                {{ d.sound.requested_by.username }}
-                        </td>
-                    </tr>
-                {% endfor %}
-                {% for s in Sounds %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'sound' s.sound.code %}">
-                                {{ s.sound.name }}
-                            </a>
-                        </td>
-                        <td>
-                                {{ s.sound.category.text }}
-                        </td>
-                        <td>
-                                {{ s.sound.requested_by.username }}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <h3>Instruments</h3>
-        <table id="instruments">
-            <thead>
-                <tr>
-                    <th>Instrument</th>
-                    <th>Played By</th>
-                    <th>Chat Vote?</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for i in Instruments %}
-                    <tr>
-                        <td>{{ i.instrument.name }}
-                        <td>{{ i.played_by.username }}</td>
-                        <td>Yes</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <table id="Lyric Inspirations">
-            <thead>
-                <tr>
-                    <th>Lyrical Idea</th>
-                    <th>Submitted By</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for l in Lyric_Inspiration %}
-                    <tr>
-                        <td>{{ l.text }}</td>
-                        <td>{{ l.requested_by.username }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

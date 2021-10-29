@@ -1,0 +1,40 @@
+<h1>Songs</h1>
+<table>
+    <thead>
+        <tr>
+            <th class="title">Title</th>
+            <th class="date">Improvised on</th>
+            <th class="venue">Venue</th>
+            <th class="tour">Tour</th>
+            <th class="length">Length</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for song in songs %}
+            <tr>
+                <td class="title">
+                    <a href="{% url 'song' song.venue.tour.name song.venue.name song.title %}">
+                        {{ song.title }}
+                    </a>
+                </td>
+                <td class="date">
+                    <a href="{% url 'venue' song.venue.tour.name song.venue.name %}">
+                        {{ song.venue.date }}
+                    </a>
+                </td>
+                <td class="venue">
+                    <a href="{% url 'venue' song.venue.tour.name song.venue.name %}">
+                        {{ song.venue.name }}
+                    </a>
+                </td>
+                <td class="tour">
+                    <a href="{% url 'tour' song.venue.tour.name %}">
+                        {{ song.venue.tour.name }}
+                    </a>
+                </td>
+                <td class="length">
+                    {{ song.length }}
+                </td>
+            </tr>
+        {% endfor %}
+</table>

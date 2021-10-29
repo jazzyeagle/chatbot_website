@@ -2,11 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="View all of the tours that ETC Kid has produced in his impressive 5 year career of playing improv on Twitch.">
-        <title>ChatBot - Tours</title>
+        <meta name="description" content="View a list of all venues.">
+        <title>ChatBot - Venues</title>
         {% load static %}
         <link rel="stylesheet" href="{% static 'mainsite/css/default.css' %}">
-        <link rel="stylesheet" href="{% static 'mainsite/css/tours.css'   %}">
+        <link rel="stylesheet" href="{% static 'mainsite/css/venues.css'  %}">
         {% include 'widgets/navbar-head.html' %}
     </head>
     <body>
@@ -14,7 +14,7 @@
             {% include 'widgets/navbar-body.html' %}
         </header>
         <main>
-            {% include 'mainsite/tour/tours-body.html' %}
+            {% include 'mainsite/venue/venues-body.html' %}
         </main>
     </body>
 </html>

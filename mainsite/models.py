@@ -54,7 +54,8 @@ class VenueArt(models.Model):
 
     title      = models.TextField()
     artist     = models.CharField(max_length=100)
-    year       = models.DateField()
+    year       = models.CharField(max_length=30)
+    venue      = models.OneToOneField(Venue, on_delete=models.CASCADE, related_name='cover')
     found_by   = models.ForeignKey(User,  on_delete=models.CASCADE, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -79,8 +80,6 @@ class Song(models.Model):
     named_by     = models.ForeignKey(User,  on_delete=models.CASCADE, blank=True, null=True)
     venue        = models.ForeignKey(Venue,  on_delete=models.CASCADE)
     length       = models.CharField(max_length=10)
-    #instruments  = models.ManyToManyField(Instrument, related_name='songs', blank=True, null=True)
-    #sounds       = models.ManyToManyField(Sound, related_name='songs', blank=True, null=True)
     created_at   = models.DateTimeField(auto_now_add=True)
     updated_at   = models.DateTimeField(auto_now=True)
 

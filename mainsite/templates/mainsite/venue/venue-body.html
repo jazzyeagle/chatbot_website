@@ -1,48 +1,57 @@
 {% load static %}
 <h1>Live from "{{ venue.name }}"</h1>
 <h3>on the "{{ venue.tour.name }}" Tour</h3>
-<table>
-    <thead>
-        <tr>
-            <th>Track #</th>
-            <th>Title</th>
-            <th>Length</th>
-            <th>Rating</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for song in songs %}
+<article>
+    <div id="cover">
+        <img src="{% static 'img/'|add:venue.tour.name|add:'/'|add:venue.name|add:'/cover.png' %}" alt="Picture of the album title for the venue {{ venue.name }}">
+        <p>Incoporates and/or remixes "{{venue.cover.title}}" by {{venue.cover.artist}} ({{venue.cover.year}})</p>
+        {% if venue.cover.found_by %}
+            <p>Found by {{venue.cover.found_by.username}}</p>
+        {% endif %}
+    </div>
+    <table>
+        <thead>
             <tr>
-                <td>
-                    <a href="{% url 'song' venue.tour.name venue.name song.title %}">
-                        {{ song.track_number }}
-                    </a>
-                </td>
-                <td>
-                    <a href="{% url 'song' venue.tour.name venue.name song.title %}">
-                        {{ song.title}}
-                    </a>
-                </td>
-                <td>
-                    <a href="{% url 'song' venue.tour.name venue.name song.title %}">
-                        {{ song.length }}
-                    </a>
-                </td>
-                <td>
-                    <form method=POST action="{% url 'song_rate' venue.name venue.tour.name song.title %}" class="star">
-                        <input type="radio" name="song{{track_number}}_rating" id="song{{track_number}}-rating-5">
-                        <label for="song{{song.track_number}}-rating-5">☆</label>
-                        <input type="radio" name="song{{track_number}}_rating" id="song{{track_number}}-rating-4">
-                        <label for="song{{song.track_number}}-rating-4">☆</label>
-                        <input type="radio" name="song{{track_number}}_rating" id="song{{track_number}}-rating-3">
-                        <label for="song{{song.track_number}}-rating-3">☆</label>
-                        <input type="radio" name="song{{track_number}}_rating" id="song{{track_number}}-rating-2">
-                        <label for="song{{song.track_number}}-rating-2">☆</label>
-                        <input type="radio" name="song{{track_number}}_rating" id="song{{track_number}}-rating-1">
-                        <label for="song{{song.track_number}}-rating-1">☆</label>
-                    </form>
-                </td>
+                <th class="table_track">Track #</th>
+                <th class="table_title">Title</th>
+                <th class="table_length">Length</th>
+                <th class="table_rating">Rating</th>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            {% for song in songs %}
+                <tr>
+                    <td class="table_track">
+                        <a href="{% url 'song' venue.tour.name venue.name song.title %}">
+                            {{ song.track_number }}
+                        </a>
+                    </td>
+                    <td class="table_title">
+                        <a href="{% url 'song' venue.tour.name venue.name song.title %}">
+                            {{ song.title}}
+                        </a>
+                    </td>
+                    <td class="table_length">
+                        <a href="{% url 'song' venue.tour.name venue.name song.title %}">
+                            {{ song.length }}
+                        </a>
+                    </td>
+                    <td class="table_rating">
+                        <form method=POST action="{% url 'song_rate' venue.name venue.tour.name song.title %}" class="star">
+                            <input type="radio" name="song{{track_number}}_rating" id="song{{track_number}}-rating-5">
+                            <label for="song{{song.track_number}}-rating-5">☆</label>
+                            <input type="radio" name="song{{track_number}}_rating" id="song{{track_number}}-rating-4">
+                            <label for="song{{song.track_number}}-rating-4">☆</label>
+                            <input type="radio" name="song{{track_number}}_rating" id="song{{track_number}}-rating-3">
+                            <label for="song{{song.track_number}}-rating-3">☆</label>
+                            <input type="radio" name="song{{track_number}}_rating" id="song{{track_number}}-rating-2">
+                            <label for="song{{song.track_number}}-rating-2">☆</label>
+                            <input type="radio" name="song{{track_number}}_rating" id="song{{track_number}}-rating-1">
+                            <label for="song{{song.track_number}}-rating-1">☆</label>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</article>
