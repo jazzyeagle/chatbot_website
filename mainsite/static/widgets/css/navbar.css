@@ -10,6 +10,11 @@ header h1 {
     margin-bottom: 0;
 }
 
+header h1 a, header h1 a:visited, header h1 a:link, header h1 a:hover {
+    color:           #000000;
+    text-decoration: none;
+}
+
 header nav {
     flex: 2;
 }

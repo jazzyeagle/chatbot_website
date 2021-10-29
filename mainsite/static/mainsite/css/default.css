@@ -10,6 +10,7 @@ body {
 
 main {
     height: 100%;
+    width:  100%;
 }
 
 main h1, main h2, main h3 {
@@ -39,11 +40,6 @@ button:focus, input:focus, textarea:focus {
 }
 
 
-button[type=submit] {
-    display:          block;
-    margin:           0.5rem auto;
-}
-
 table, thead, tbody {
     display:         block;
     margin:          0 auto;
@@ -55,9 +51,12 @@ tr {
     display: flex;
 }
 
-td {
-    border:         solid 0.1rem #967969;
+th, td {
     overflow-wrap:  break-word;
     padding:        0.8rem;
     vertical-align: top;
+}
+
+td {
+    border:         solid 0.1rem #967969;
 }

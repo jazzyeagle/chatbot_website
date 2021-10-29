@@ -2,6 +2,7 @@ from django.db.models.functions import Lower
 
 from mainsite.models import *
 from show.models     import *
+from users           import data
 
 from result import ResultFlag, Result
 
@@ -11,7 +12,12 @@ def index(request):
         user = User.objects.get(id=request.session['user_id'])
     else:
         user = None
-    return Result(ResultFlag.Ok, { 'user': user })
+    # Uses the user page as default, so pull same data
+    page_data = data.user(request, user.username)
+    if page_data.isOk:
+        return Result(ResultFlag.Ok, page_data.get() )
+    else:
+        return Result(ResultFlag.Error, 'Could not get User data')
 
 
 def tours(request):

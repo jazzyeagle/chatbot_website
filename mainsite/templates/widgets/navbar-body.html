@@ -1,4 +1,4 @@
-<h1>Chatbot</h1>
+<h1><a href="{% url 'homepage' %}">Chatbot</a></h1>
 <nav class="dropdown">
     {% if 'user_id' in request.session %}
         <h3>Welcome, {{user.username}}</h3>
@@ -11,5 +11,9 @@
         {% else %}
             <li><a href="{% url 'login' %}">Login / Register</a></li>
         {% endif %}
+        <li><a href="{% url 'tours' %}">Browse Tours</a></li>
+        <li><a href="{% url 'venues' %}">Browse Venues</a></li>
+        <li><a href="{% url 'songs'  %}">Browse Songs</a></li>
+        <li><a href="{% url 'sounds' %}">Browse Sounds</a></li>
     </ul>
 </nav>

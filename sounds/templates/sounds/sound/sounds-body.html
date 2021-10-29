@@ -23,38 +23,37 @@
     <thead>
         <tr>
             <th class="name">Name</th>
-            <th class="demo">Demo</th>
+            <!--<th class="demo">Demo</th>-->
             <th class="category">Category</th>
             <th class="subcategory">SubCategory</th>
             <th class="request">Request</th>
+            <th class="rating">Rating</th>
         </tr>
     </thead>
     <tbody>
         {% for sound in sounds %}
             <tr id="{{sound.code}}">
-                <td class="name"><a href="{% url 'sound' sound.code %}">{{sound.name}}</a></td>
-                <td class="demo"><audio></audio></td>
+                <td class="name">
+                    <a href="{% url 'sound' sound.code %}">
+                        {{sound.name}}
+                    </a>
+                </td>
+                <!--<td class="demo"><audio></audio></td>-->
                 <td class="category">{{sound.category.text}}</td>
                 <td class="subcategory">{{sound.subcategory.text}}</td>
                 <td class="request">
-                    <span class="request_text">
-                        {% if sound.category.text == "Drum Kit" %}
-                            !drumkit {{sound.code}}
-                        {% else %}
-                            !sound {{sound.code}}
-                        {% endif %}
-                    </span>
-                </td>
-                <td class="request2">
-                    <button class="request_button">Request</button>
+                    {% if sound.category.text == "Drum Kit" %}
+                        !drumkit {{sound.code}}
+                    {% else %}
+                        !sound {{sound.code}}
+                    {% endif %}
                 </td>
                 <td class="rating">
                     <form method=POST action="{% url 'sound_rate' sound.code %}" class="star">
                         {% csrf_token %}
-                        <noscript>
-                            {{ sound.ratings__avg }}
-                            <button type="submit">Rate</button>
-                        </noscript>
+
+                        <button class="rating_button" type="submit">Rate</button>
+
                         <input type="radio" name="rating" id="{{sound.code}}-rating-5" value="5"
                             {% if sound.avg_rating == 5 %} checked {% endif %}>
                         <label for="{{sound.code}}-rating-5">☆</label>
