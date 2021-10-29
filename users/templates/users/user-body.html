@@ -1,0 +1,48 @@
+<h1>{{ user.username }}</h1>
+
+<h3>Total Requests Used</h3>
+<table>
+    <thead>
+        <tr>
+            <th class="summary">BPM</th>
+            <th class="summary">Key</th>
+            <th class="summary">Drumloop</th>
+            <th class="summary">Drum Fills</th>
+            <th class="summary">Drumkits</th>
+            <th class="summary">Sounds</th>
+            <th class="summary">Instruments</th>
+            <th class="summary">Lyric Inspirations</th>
+            <th class="summary">Tours Named</th>
+            <th class="summary">Venues Named</th>
+            <th class="summary">Songs Named</th>
+            <th class="summary">Cover Images Found</th>
+            <th class="summary">Total Requests</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="summary">{{ Bpm.count}}</td>
+            <td class="summary">{{ Key.count}}</td>
+            <td class="summary">{{ Drum_Loops.count }}</td>
+            <td class="summary">{{ Drum_Fills.count }}</td>
+            <td class="summary">{{ Drumkit.count }}</td>
+            <td class="summary">{{ Sounds.count }}</td>
+            <td class="summary">{{ Instruments.count }}</td>
+            <td class="summary">{{ Lyric_Inspiration.count }}</td>
+            <td class="summary">{{ Tours.count }}</td>
+            <td class="summary">{{ Venues.count }}</td>
+            <td class="summary">{{ Songs.count }}</td>
+            <td class="summary">{{ Covers.count }}</td>
+            <td class="summary">{{ total }}</td>
+        </tr>
+    </tbody>
+</table>
+<h3>BPM Requests used on:</h3>
+<ul>
+    {% for bpm in Bpm %}
+    <li>
+        <a href="{% url 'song' bpm.used_on_track.venue.tour.name bpm.used_on_track.venue.name bpm.used_on_track.title %}">
+            {{ bpm.used_on_track.title }}
+        </a>
+    </li>
+    {% endfor %}

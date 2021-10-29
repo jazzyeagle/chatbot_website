@@ -22,5 +22,6 @@ urlpatterns = [
     path('login_process',        login_process,             name='login_process'),
     path('logout',               logout,                    name='logout'),
     path('sounds/',              include('sounds.urls')),
+    path('users/',               include('users.urls')),
     path('',                     include('mainsite.urls'))
 ]

@@ -1,0 +1,20 @@
+<h1>Users</h1>
+<table>
+    <thead>
+        <tr>
+            <th class="user">Users</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+            {% if user.username %}
+            <tr>
+                <td class="user">
+                    <a href="{% url 'user' user.username %}">
+                        {{ user.username }}
+                    </a>
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+</table>
