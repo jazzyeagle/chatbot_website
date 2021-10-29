@@ -15,14 +15,22 @@
             <tr>
                 <td class="type">BPM</td>
                 <td class="value">{{ b.text }}</td>
-                <td class="user">{{ b.requested_by.username }}</td>
+                <td class="user">
+                    <a href="{% url 'user' b.requested_by.username %}">
+                        {{ b.requested_by.username }}
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         {% for k in Key %}
             <tr>
                 <td class="type">Key</td>
                 <td class="value">{{ k.text }}</td>
-                <td class="user">{{ k.requested_by.username }}</td>
+                <td class="user">
+                    <a href="{% url 'user' k.requested_by.username %}">
+                        {{ k.requested_by.username }}
+                    </a>
+                </td>
             </tr>
         {% endfor %}
     </tbody>
@@ -41,14 +49,22 @@
             <tr>
                 <td class="type">Loop</td>
                 <td class="value">"{{ loop.text }}"</td>
-                <td class="user">{{ loop.requested_by.username }}</td>
+                <td class="user">
+                    <a href="{% url 'user' loop.requested_by.username %}">
+                        {{ loop.requested_by.username }}
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         {% for fill in Drum_Fills %}
             <tr>
                 <td class="type">Fill</td>
                 <td class="value">"{{ fill.text }}"</td>
-                <td class="user">{{ fill.requested_by.username }}</td>
+                <td class="user">
+                    <a href="{% url 'user' fill.requested_by.username %}">
+                        {{ fill.requested_by.username }}
+                    </a>
+                </td>
             </tr>
         {% endfor %}
     </tbody>
@@ -78,7 +94,9 @@
                         {{ d.sound.subcategory.text }}
                 </td>
                 <td class="user">
-                        {{ d.sound.requested_by.username }}
+                    <a href="{% url 'user' d.requested_by.username %}">
+                        {{ d.requested_by.username }}
+                    </a>
                 </td>
             </tr>
         {% endfor %}
@@ -96,7 +114,9 @@
                         {{ s.sound.subcategory.text }}
                 </td>
                 <td class="user">
-                        {{ s.sound.requested_by.username }}
+                    <a href="{% url 'user' s.requested_by.username %}">
+                        {{ s.requested_by.username }}
+                    </a>
                 </td>
             </tr>
         {% endfor %}
@@ -115,7 +135,11 @@
         {% for i in Instruments %}
             <tr>
                 <td class="value">{{ i.instrument.name }}
-                <td class="user">{{ i.played_by.username }}</td>
+                <td class="user">
+                    <a href="{% url 'user' i.played_by.username %}">
+                        {{ i.played_by.username }}
+                    </a>
+                </td>
                 <td class="type">Yes</td>
             </tr>
         {% endfor %}
@@ -133,7 +157,11 @@
             {% for l in Lyric_Inspiration %}
                 <tr>
                     <td class="value">"{{ l.text }}"</td>
-                    <td class="user">{{ l.requested_by.username }}</td>
+                    <td class="user">
+                        <a href="{% url 'user' l.requested_by.username %}">
+                            {{ l.requested_by.username }}
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
