@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="View a list of all users.">
+        <title>ChatBot - Songs</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'mainsite/css/default.css' %}">
+        <link rel="stylesheet" href="{% static 'users/css/users.css'   %}">
+        {% include 'widgets/navbar-head.html' %}
+    </head>
+    <body>
+        <header>
+            {% include 'widgets/navbar-body.html' %}
+        </header>
+        <main>
+            {% include 'users/users-body.html' %}
+        </main>
+    </body>
+</html>

@@ -3,10 +3,11 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib   import messages
 from django.db.models import Q
 
+from users            import data
 from users.models     import User
 
 def login(request):
-    return render(request, 'login/login.html')
+    return render(request, 'users/login.html')
 
 
 def logout(request):
@@ -56,3 +57,15 @@ def login_process(request):
 
     request.session['user_id'] = user.id
     return redirect(reverse('homepage'))
+
+
+def users(request):
+    page_data = data.users(request)
+    if page_data.isOk():
+        return render(request, 'users/users.html', page_data.get())
+
+
+def user(request, username):
+    page_data = data.user(request, username)
+    if page_data.isOk():
+        return render(request, 'users/user.html', page_data.get())

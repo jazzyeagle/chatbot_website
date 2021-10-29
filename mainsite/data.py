@@ -40,7 +40,7 @@ def songs(request):
     else:
         user = None
     return Result(ResultFlag.Ok, { 'songs': Song.objects.all().order_by(Lower('title')),
-                                   'user':   user
+                                   'user':  user
                                  })
 
 
