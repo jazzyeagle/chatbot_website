@@ -1,29 +1,24 @@
-table {
+form {
+    display: block;
     margin: 0 auto;
-    border-collapse: collapse;
-    width: 95%;
 }
 
-thead tr {
+main form {
     margin-bottom: 2.0rem;
 }
 
-th {
-    font-size: large;
+table, thead, tbody {
+    font-size: small;
+    margin: 0 auto;
+    width: 95%;
 }
 
-td, th {
-    overflow-wrap: break-word;
-    vertical-align: middle;
-}
-
-tr {
-    padding: 0.5rem;
+.name {
+    flex: 3;
 }
 
 td .name {
     text-align: left;
-    width: 55%;
 }
 
 .demo {
@@ -31,30 +26,18 @@ td .name {
 }
 
 .category, .subcategory {
-    flex: 2;
+    flex: 1;
     text-align: center;
-    width: 10%;
 }
 
 .request {
-    border-right: 0;
-    width: 8%;
-}
-
-.request2 {
-    border-left: 0;
-    width: 2%;
+    flex: 1;
 }
 
 .rating {
-    padding: 0 auto;
-    width: 10%;
+    flex: 1;
 }
 
-.request_text {
-    padding-left: 0.5rem;
-}
-
-.request_button {
-    padding: 0.5rem;
+.rating_button {
+    margin: 0 0.5rem;
 }

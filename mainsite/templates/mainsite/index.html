@@ -6,6 +6,7 @@
         <title>ChatBot</title>
         {% load static %}
         <link rel="stylesheet" href="{% static 'mainsite/css/default.css' %}">
+        <link rel="stylesheet" href="{% static 'users/css/user.css'       %}">
         {% include 'widgets/navbar-head.html' %}
     </head>
     <body>
@@ -13,8 +14,7 @@
             {% include 'widgets/navbar-body.html' %}
         </header>
         <main>
-            <a href="{% url 'tours'  %}">Tours</a>
-            <a href="{% url 'sounds'  %}">Sounds</a>
+            {% include 'users/user-body.html' %}
         </main>
     </body>
 </html>

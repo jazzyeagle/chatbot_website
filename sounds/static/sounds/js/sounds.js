@@ -4,7 +4,11 @@ function onPageLoad() {
         if (inputs[i].type == "radio") {
             inputs[i].addEventListener("change", radioOnChange)
         }
+    }
 
+    buttons = document.getElementsByClassName("rating_button")
+    for(i = 0; i < buttons.length; i++) {
+        buttons[i].style.display = 'none'
     }
 }
 

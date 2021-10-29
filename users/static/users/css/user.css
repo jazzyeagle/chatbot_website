@@ -1,7 +1,24 @@
-table {
-    width: 100%;
+table, thead, tbody {
+    width: 90%;
+    margin: 0 auto;
+}
+
+table, ul {
+    margin-bottom: 2.0rem;
 }
 
 .summary {
+    flex: 1;
+}
+
+th {
+    font-size: small;
+}
+
+article {
+    display: flex;
+}
+
+article div {
     flex: 1;
 }

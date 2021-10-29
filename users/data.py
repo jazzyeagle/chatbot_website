@@ -24,8 +24,9 @@ def user(request, username):
     data['Tours']  = Tour.objects.filter(named_by=user)
     data['Venues'] = Venue.objects.filter(named_by=user)
     data['Songs']  = Song.objects.filter(named_by=user)
+    data['Sounds_Named'] = Sound.objects.filter(renamed_by=user)
     data['Covers'] = VenueArt.objects.filter(found_by=user)
-    total += data['Tours'].count() + data['Venues'].count() + data['Songs'].count()
+    total += data['Tours'].count() + data['Venues'].count() + data['Songs'].count() + data['Sounds_Named'].count() + data['Covers'].count()
     data['total'] = total
     print(data.keys())
     return Result(ResultFlag.Ok, data)

@@ -15,6 +15,7 @@
             <th class="summary">Tours Named</th>
             <th class="summary">Venues Named</th>
             <th class="summary">Songs Named</th>
+            <th class="summary">Sounds Named</th>
             <th class="summary">Cover Images Found</th>
             <th class="summary">Total Requests</th>
         </tr>
@@ -32,17 +33,173 @@
             <td class="summary">{{ Tours.count }}</td>
             <td class="summary">{{ Venues.count }}</td>
             <td class="summary">{{ Songs.count }}</td>
+            <td class="summary">{{ Sounds_Named.count }}</td>
             <td class="summary">{{ Covers.count }}</td>
             <td class="summary">{{ total }}</td>
         </tr>
     </tbody>
 </table>
-<h3>BPM Requests used on:</h3>
-<ul>
-    {% for bpm in Bpm %}
-    <li>
-        <a href="{% url 'song' bpm.used_on_track.venue.tour.name bpm.used_on_track.venue.name bpm.used_on_track.title %}">
-            {{ bpm.used_on_track.title }}
-        </a>
-    </li>
-    {% endfor %}
+<article>
+    <div>
+        {% if Bpm.count > 0 %}
+            <h3>BPM requests used on:</h3>
+            <ul>
+                {% for bpm in Bpm %}
+                <li>
+                    <a href="{% url 'song' bpm.used_on_track.venue.tour.name bpm.used_on_track.venue.name bpm.used_on_track.title %}">
+                        {{ bpm.used_on_track.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if Key.count > 0 %}
+            <h3>Key requests used on:</h3>
+            <ul>
+                {% for key in Key %}
+                <li>
+                    <a href="{% url 'song' key.used_on_track.venue.tour.name key.used_on_track.venue.name key.used_on_track.title %}">
+                        {{ key.used_on_track.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if Drum_Loops.count > 0 %}
+            <h3>Drum Loop requests used on:</h3>
+            <ul>
+                {% for loop in Drum_Loops %}
+                <li>
+                    <a href="{% url 'song' loop.used_on_track.venue.tour.name loop.used_on_track.venue.name loop.used_on_track.title %}">
+                        {{ loop.used_on_track.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if Drum_Fills.count > 0 %}
+            <h3>Drum Fill requests used on:</h3>
+            <ul>
+                {% for fill in Drum_Fills %}
+                <li>
+                    <a href="{% url 'song' fill.used_on_track.venue.tour.name fill.used_on_track.venue.name fill.used_on_track.title %}">
+                        {{ fill.used_on_track.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <div>
+        {% if Drumkit.count > 0 %}
+            <h3>Drumkit requests used on:</h3>
+            <ul>
+                {% for kit in Drumkit %}
+                <li>
+                    <a href="{% url 'song' kit.used_on_track.venue.tour.name kit.used_on_track.venue.name kit.used_on_track.title %}">
+                        {{ kit.used_on_track.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if Sounds.count > 0 %}
+            <h3>Sounds requests used on:</h3>
+            <ul>
+                {% for sound in Sounds %}
+                <li>
+                    <a href="{% url 'song' sound.used_on_track.venue.tour.name sound.used_on_track.venue.name sound.used_on_track.title %}">
+                        {{ sound.used_on_track.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if Instruments.count > 0 %}
+            <h3>Instrument requests used on:</h3>
+            <ul>
+                {% for instrument in Instruments %}
+                <li>
+                    <a href="{% url 'song' instrument.used_on_track.venue.tour.name instrument.used_on_track.venue.name instrument.used_on_track.title %}">
+                        {{ instrument.used_on_track.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if Lyric_Inspiration.count > 0 %}
+            <h3>Lyric Inspirations used on:</h3>
+            <ul>
+                {% for lyric in Lyric_Inspiration %}
+                <li>
+                    <a href="{% url 'song' lyric.used_on_track.venue.tour.name lyric.used_on_track.venue.name lyric.used_on_track.title %}">
+                        {{ lyric.used_on_track.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <div>
+        {% if Tours.count > 0 %}
+            <h3>Tours named:</h3>
+            <ul>
+                {% for tour in Tours %}
+                <li>
+                    <a href="{% url 'tour' tour.name %}">
+                        {{ tour.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if Venues.count > 0 %}
+            <h3>Venues named:</h3>
+            <ul>
+                {% for venue in Venues %}
+                <li>
+                    <a href="{% url 'venue' venue.tour.name venue.name %}">
+                        {{ venue.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if Songs.count > 0 %}
+            <h3>Songs named:</h3>
+            <ul>
+                {% for song in Songs %}
+                <li>
+                    <a href="{% url 'song' song.venue.tour.name song.venue.name song.title %}">
+                        {{ song.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if Sounds_Named.count > 0 %}
+            <h3>Sounds named:</h3>
+            <ul>
+                {% for sound in Sounds_Named %}
+                <li>
+                    <a href="{% url 'sound' sound.code %}">
+                        {{ sound.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if Covers.count > 0 %}
+            <h3>Cover Images Found:</h3>
+            <ul>
+                {% for cover in Covers %}
+                <li>
+                    <a href="{% url 'venue' cover.venue.tour.name cove.venue.name %}">
+                        {{ cover.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</article>
