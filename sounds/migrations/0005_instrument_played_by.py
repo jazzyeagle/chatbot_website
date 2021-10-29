@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('login', '0003_user_saymyname'),
+        ('users', '0003_user_saymyname'),
         ('sounds', '0004_alter_instrument_code'),
     ]
 
@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='instrument',
             name='played_by',
-            field=models.ForeignKey(default=9, on_delete=django.db.models.deletion.CASCADE, to='login.user'),
+            field=models.ForeignKey(default=9, on_delete=django.db.models.deletion.CASCADE, to='users.user'),
             preserve_default=False,
         ),
     ]

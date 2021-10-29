@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('login', '0001_initial'),
+        ('users', '0001_initial'),
     ]
 
     operations = [
@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('name', models.TextField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('named_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='login.user')),
+                ('named_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.user')),
             ],
         ),
         migrations.CreateModel(
@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 ('month', models.DateField(unique_for_month=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('named_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='login.user')),
+                ('named_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.user')),
             ],
         ),
         migrations.CreateModel(
@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
                 ('date', models.DateField(unique_for_date=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('named_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='login.user')),
+                ('named_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.user')),
                 ('venue', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mainsite.tour')),
             ],
         ),
@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('rating', models.IntegerField()),
                 ('song', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mainsite.song')),
-                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='login.user')),
+                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.user')),
             ],
         ),
     ]

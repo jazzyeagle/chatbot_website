@@ -9,7 +9,7 @@ class UserManager(models.Manager):
 
 class User(models.Model):
     class Meta:
-        app_label = 'login'
+        app_label = 'users'
 
     username   = models.CharField(max_length=50, unique=True)
     email      = models.CharField(max_length=255)
@@ -29,6 +29,8 @@ class User(models.Model):
                }
 
 class UserPronoun(models.Model):
+    class Meta:
+        app_label = 'users'
     user       = models.ForeignKey(User, on_delete=models.CASCADE)
     subjective = models.CharField(max_length=10)
     objective  = models.CharField(max_length=10)

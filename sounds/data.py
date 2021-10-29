@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models       import Q, Avg
 
-from login.models           import User
+from users.models           import User
 from show.models            import *
 from sounds.models          import *
 from result                 import ResultFlag, Result

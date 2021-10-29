@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('login', '0002_alter_user_password'),
+        ('users', '0002_alter_user_password'),
     ]
 
     operations = [

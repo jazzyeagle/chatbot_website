@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('mainsite', '0004_alter_song_length'),
-        ('login', '0003_user_saymyname'),
+        ('users', '0003_user_saymyname'),
         ('show', '0004_alter_request_used_on_track'),
     ]
 
@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('used_on_track', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='mainsite.song')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='login.user')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.user')),
             ],
         ),
     ]

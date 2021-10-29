@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib   import messages
 from django.db.models import Q
 
-from login.models     import User
+from users.models     import User
 
 def login(request):
     return render(request, 'login/login.html')

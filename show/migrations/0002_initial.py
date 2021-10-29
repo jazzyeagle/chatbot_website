@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('login', '0001_initial'),
+        ('users', '0001_initial'),
         ('sounds', '0001_initial'),
         ('show', '0001_initial'),
     ]
@@ -23,6 +23,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='request',
             name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='login.user'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.user'),
         ),
     ]

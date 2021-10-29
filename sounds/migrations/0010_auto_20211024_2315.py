@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('login', '0005_userpronoun'),
+        ('users', '0005_userpronoun'),
         ('sounds', '0009_auto_20211024_2151'),
     ]
 
@@ -20,6 +20,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='soundrating',
             name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='ratings', to='login.user'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='ratings', to='users.user'),
         ),
     ]
