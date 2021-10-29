@@ -1,5 +1,6 @@
 {% load static %}
 <h1>The "<span>{{ tour.name }}</span>" Tour</h1>
+<h3>Named by <a href="{% url 'user' tour.named_by.username %}">{{ tour.named_by.username }}</a></h3>
 <table>
     <thead>
         <tr>
