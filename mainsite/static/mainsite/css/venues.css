@@ -1,0 +1,7 @@
+.date {
+    flex: 1;
+}
+
+.venue, .tour {
+    flex: 2;
+}

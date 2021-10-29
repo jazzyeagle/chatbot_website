@@ -1,3 +1,5 @@
+from django.db.models.functions import Lower
+
 from mainsite.models import *
 from show.models     import *
 
@@ -17,9 +19,31 @@ def tours(request):
         user = User.objects.get(id=request.session['user_id'])
     else:
         user = None
-    return Result(ResultFlag.Ok, { 'tours': Tour.objects.all(),
+    return Result(ResultFlag.Ok, { 'tours': Tour.objects.all().order_by('month'),
                                    'user':  user
                                  })
+
+
+def venues(request):
+    if 'user_id' in request.session:
+        user = User.objects.get(id=request.session['user_id'])
+    else:
+        user = None
+    return Result(ResultFlag.Ok, { 'venues': Venue.objects.all().order_by('date'),
+                                   'user':   user
+                                 })
+
+
+def songs(request):
+    if 'user_id' in request.session:
+        user = User.objects.get(id=request.session['user_id'])
+    else:
+        user = None
+    return Result(ResultFlag.Ok, { 'songs': Song.objects.all().order_by(Lower('title')),
+                                   'user':   user
+                                 })
+
+
 
 
 def tour(request, tour_name):

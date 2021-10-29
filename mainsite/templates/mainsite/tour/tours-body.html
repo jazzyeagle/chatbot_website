@@ -2,15 +2,15 @@
 <table>
     <thead>
         <tr>
-            <th>Month</th>
-            <th>Tour Name</th>
+            <th class="table_month">Month</th>
+            <th class="table_name">Tour Name</th>
         </tr>
     </thead>
     <tbody>
         {% for tour in tours %}
             <tr>
-                <td>{{ tour.month|date:"F Y"}}</td>
-                <td><a href="{% url 'tour' tour.name %}">The "{{ tour.name }}" Tour</a></td>
+                <td class="table_month">{{ tour.month|date:"F Y"}}</td>
+                <td class="table_name"><a href="{% url 'tour' tour.name %}">The "{{ tour.name }}" Tour</a></td>
             </tr>
         {% endfor %}
     </tbody>

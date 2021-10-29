@@ -1,0 +1,31 @@
+<h1>Venues</h1>
+<table>
+    <thead>
+        <tr>
+            <th class="date">Date</th>
+            <th class="venue">Venue</th>
+            <th class="tour">Tour</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for venue in venues %}
+            <tr>
+                <td class="date">
+                    <a href="{% url 'venue' venue.tour.name venue.name %}">
+                        {{ venue.date }}
+                    </a>
+                </td>
+                <td class="venue">
+                    <a href="{% url 'venue' venue.tour.name venue.name %}">
+                        {{ venue.name }}
+                    </a>
+                </td>
+                <td class="tour">
+                    <a href="{% url 'tour' venue.tour.name %}">
+                        {{ venue.tour.name }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

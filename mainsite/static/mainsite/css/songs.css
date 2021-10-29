@@ -1,0 +1,12 @@
+table {
+    font-size: small;
+    width: 100%;
+}
+
+.title, .venue, .tour {
+    flex: 2;
+}
+
+.date, .length {
+    flex: 1;
+}

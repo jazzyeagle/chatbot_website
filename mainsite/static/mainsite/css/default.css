@@ -4,8 +4,17 @@
     padding: 0;
 }
 
-h1, h2, h3 {
+body {
+    height: 100%;
+}
+
+main {
+    height: 100%;
+}
+
+main h1, main h2, main h3 {
     text-align: center;
+    margin-bottom: 2.0rem;
 }
 
 .row {
@@ -35,14 +44,20 @@ button[type=submit] {
     margin:           0.5rem auto;
 }
 
-img {
-    height: 100px;
-    width: 100px;
-    margin-right: 2rem;
+table, thead, tbody {
+    display:         block;
+    margin:          0 auto;
+    width:           80%;
+    border-collapse: collapse;
+}
+
+tr {
+    display: flex;
 }
 
 td {
-    border: solid 0.1rem #967969;
-    overflow: wrap;
+    border:         solid 0.1rem #967969;
+    overflow-wrap:  break-word;
+    padding:        0.8rem;
     vertical-align: top;
 }
