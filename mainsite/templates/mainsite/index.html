@@ -14,7 +14,9 @@
             {% include 'widgets/navbar-body.html' %}
         </header>
         <main>
-            {% include 'users/user-body.html' %}
+            {% if 'user_id' in request.session %}
+                {% include 'users/user-body.html' %}
+            {% endif %}
         </main>
     </body>
 </html>

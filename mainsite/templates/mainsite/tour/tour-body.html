@@ -13,17 +13,17 @@
         {% for venue in venues %}
             <tr>
                 <td class="table_date">
-                    <a href="{% url 'venue' tour.name venue.name %}">
+                    <a href="{% url 'venue' tour.url_slug venue.url_slug %}">
                         {{ venue.date|date:"Y/m/d"}}
                     </a>
                 </td>
                 <td class="table_cover">
-                    <a href="{% url 'venue' tour.name venue.name %}">
+                    <a href="{% url 'venue' tour.url_slug venue.url_slug %}">
                         <img src="{% static 'img/'|add:tour.name|add:'/'|add:venue.name|add:'/cover.png' %}" alt="Album Cover for '{{ venue.name }}'">
                     </a>
                 </td>
                 <td class="table_name">
-                    <a href="{% url 'venue' tour.name venue.name %}">
+                    <a href="{% url 'venue' tour.url_slug venue.url_slug %}">
                         {{ venue.name }}
                     </a>
                 </td>

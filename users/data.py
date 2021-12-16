@@ -18,14 +18,14 @@ def user(request, username):
         return Result(ResultFlag.Error, f'Username {username} does not exist.')
     data = { 'user': user }
     total = 0
-    for rt in RequestType.objects.all():
-        data[rt.text.replace(' ', '_')] = user.requested_by.filter(request_type=rt)
+    for rt in Command.objects.all():
+        data[rt.text.replace(' ', '_')] = user.requested_by.filter(command=rt).order_by('used_on_track').distinct('used_on_track')
         total += data[rt.text.replace(' ', '_')].count()
-    data['Tours']  = Tour.objects.filter(named_by=user)
-    data['Venues'] = Venue.objects.filter(named_by=user)
-    data['Songs']  = Song.objects.filter(named_by=user)
-    data['Sounds_Named'] = Sound.objects.filter(renamed_by=user)
-    data['Covers'] = VenueArt.objects.filter(found_by=user)
+    data['Tours']  = Tour.objects.filter(named_by=user).distinct()
+    data['Venues'] = Venue.objects.filter(named_by=user).distinct()
+    data['Songs']  = Song.objects.filter(named_by=user).distinct()
+    data['Sounds_Named'] = Sound.objects.filter(renamed_by=user).distinct()
+    data['Covers'] = VenueArt.objects.filter(found_by=user).distinct()
     total += data['Tours'].count() + data['Venues'].count() + data['Songs'].count() + data['Sounds_Named'].count() + data['Covers'].count()
     data['total'] = total
     print(data.keys())

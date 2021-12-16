@@ -13,22 +13,22 @@
         {% for song in songs %}
             <tr>
                 <td class="title">
-                    <a href="{% url 'song' song.venue.tour.name song.venue.name song.title %}">
+                    <a href="{% url 'song' song.venue.tour.url_slug song.venue.url_slug song.url_slug %}">
                         {{ song.title }}
                     </a>
                 </td>
                 <td class="date">
-                    <a href="{% url 'venue' song.venue.tour.name song.venue.name %}">
+                    <a href="{% url 'venue' song.venue.tour.url_slug song.venue.url_slug %}">
                         {{ song.venue.date }}
                     </a>
                 </td>
                 <td class="venue">
-                    <a href="{% url 'venue' song.venue.tour.name song.venue.name %}">
+                    <a href="{% url 'venue' song.venue.tour.url_slug song.venue.url_slug %}">
                         {{ song.venue.name }}
                     </a>
                 </td>
                 <td class="tour">
-                    <a href="{% url 'tour' song.venue.tour.name %}">
+                    <a href="{% url 'tour' song.venue.tour.url_slug %}">
                         {{ song.venue.tour.name }}
                     </a>
                 </td>

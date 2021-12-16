@@ -1,4 +1,5 @@
 from django.db.models.functions import Lower
+from django.utils.http          import urlsafe_base64_encode, urlsafe_base64_decode
 
 from mainsite.models import *
 from show.models     import *
@@ -10,15 +11,16 @@ from result import ResultFlag, Result
 def index(request):
     if 'user_id' in request.session:
         user = User.objects.get(id=request.session['user_id'])
+        # Uses the user page as default, so pull same data
+        page_data = data.user(request, user.username)
+        if page_data.isOk:
+            return Result(ResultFlag.Ok, page_data.get() )
+        else:
+            return Result(ResultFlag.Error, 'Could not get User data')
     else:
         user = None
-    # Uses the user page as default, so pull same data
-    page_data = data.user(request, user.username)
-    if page_data.isOk:
-        return Result(ResultFlag.Ok, page_data.get() )
-    else:
-        return Result(ResultFlag.Error, 'Could not get User data')
-
+        return Result(ResultFlag.Ok, {})
+    
 
 def tours(request):
     if 'user_id' in request.session:
@@ -53,7 +55,7 @@ def songs(request):
 
 
 def tour(request, tour_name):
-    tour   = Tour.objects.get(name=tour_name)
+    tour   = Tour.objects.get(url_slug=tour_name)
     if 'user_id' in request.session:
         user = User.objects.get(id=request.session['user_id'])
     else:
@@ -66,7 +68,7 @@ def tour(request, tour_name):
 
 
 def venue(request, tour_name, venue_name):
-    venue  = Venue.objects.get(name=venue_name)
+    venue  = Venue.objects.get(url_slug=venue_name)
     if 'user_id' in request.session:
         user = User.objects.get(id=request.session['user_id'])
     else:
@@ -79,7 +81,7 @@ def venue(request, tour_name, venue_name):
 
 
 def song(request, tour_name, venue_name, song_title):
-    song   = Song.objects.get(title=song_title)
+    song   = Song.objects.get(url_slug=song_title)
     if 'user_id' in request.session:
         user = User.objects.get(id=request.session['user_id'])
     else:
@@ -87,6 +89,8 @@ def song(request, tour_name, venue_name, song_title):
     data = { 'song': song,
              'user': user
            }
-    for rt in RequestType.objects.all():
-        data[rt.text.replace(' ', '_')] = song.request_set.filter(request_type=rt)
+    for rt in Command.objects.all():
+        data[rt.text.replace(' ', '_')] = song.song_requests.filter(command=rt)
+    for s in data['instrument']:
+        print(s.played_by.username)
     return  Result(ResultFlag.Ok, data)

@@ -1,184 +1,201 @@
 <h1>{{ user.username }}</h1>
 
-<h3>Total Requests Used</h3>
-<table>
-    <thead>
-        <tr>
-            <th class="summary">BPM</th>
-            <th class="summary">Key</th>
-            <th class="summary">Drumloop</th>
-            <th class="summary">Drum Fills</th>
-            <th class="summary">Drumkits</th>
-            <th class="summary">Sounds</th>
-            <th class="summary">Instruments</th>
-            <th class="summary">Lyric Inspirations</th>
-            <th class="summary">Tours Named</th>
-            <th class="summary">Venues Named</th>
-            <th class="summary">Songs Named</th>
-            <th class="summary">Sounds Named</th>
-            <th class="summary">Cover Images Found</th>
-            <th class="summary">Total Requests</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="summary">{{ Bpm.count}}</td>
-            <td class="summary">{{ Key.count}}</td>
-            <td class="summary">{{ Drum_Loops.count }}</td>
-            <td class="summary">{{ Drum_Fills.count }}</td>
-            <td class="summary">{{ Drumkit.count }}</td>
-            <td class="summary">{{ Sounds.count }}</td>
-            <td class="summary">{{ Instruments.count }}</td>
-            <td class="summary">{{ Lyric_Inspiration.count }}</td>
-            <td class="summary">{{ Tours.count }}</td>
-            <td class="summary">{{ Venues.count }}</td>
-            <td class="summary">{{ Songs.count }}</td>
-            <td class="summary">{{ Sounds_Named.count }}</td>
-            <td class="summary">{{ Covers.count }}</td>
-            <td class="summary">{{ total }}</td>
-        </tr>
-    </tbody>
-</table>
+<h2>Total Requests Used: {{ total }}</h2>
+<p>Click on any header's arrow to find details on each request.</p>
 <article>
-    <div>
-        {% if Bpm.count > 0 %}
-            <h3>BPM requests used on:</h3>
+
+    {% if bpm.count > 0 %}
+        <div>
+            <input type="checkbox" id="bpm-checkbox">
+            <label for="bpm-checkbox">&#10147;</label>
+            <h4>BPM requests [{{ bpm.count }}]</h4>
             <ul>
-                {% for bpm in Bpm %}
+                {% for bpm in bpm %}
                 <li>
-                    <a href="{% url 'song' bpm.used_on_track.venue.tour.name bpm.used_on_track.venue.name bpm.used_on_track.title %}">
+                    <a href="{% url 'song' bpm.used_on_track.venue.tour.url_slug bpm.used_on_track.venue.url_slug bpm.used_on_track.url_slug %}">
                         {{ bpm.used_on_track.title }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        {% endif %}
-        {% if Key.count > 0 %}
-            <h3>Key requests used on:</h3>
+        </div>
+    {% endif %}
+
+    {% if key.count > 0 %}
+        <div>
+            <input type="checkbox" id="key-checkbox">
+            <label for="key-checkbox">&#10147;</label>
+            <h4>Key requests [{{ key.count }}]</h4>
             <ul>
-                {% for key in Key %}
+                {% for key in key %}
                 <li>
-                    <a href="{% url 'song' key.used_on_track.venue.tour.name key.used_on_track.venue.name key.used_on_track.title %}">
+                    <a href="{% url 'song' key.used_on_track.venue.tour.url_slug key.used_on_track.venue.url_slug key.used_on_track.url_slug %}">
                         {{ key.used_on_track.title }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        {% endif %}
-        {% if Drum_Loops.count > 0 %}
-            <h3>Drum Loop requests used on:</h3>
+        </div>
+    {% endif %}
+
+    {% if drumloop.count > 0 %}
+        <div>
+            <input type="checkbox" id="drumloop-checkbox">
+            <label for="drumloop-checkbox">&#10147;</label>
+            <h4>Drum Loop requests [{{ drumloop.count }}]</h4>
             <ul>
-                {% for loop in Drum_Loops %}
+                {% for loop in drumloop %}
                 <li>
-                    <a href="{% url 'song' loop.used_on_track.venue.tour.name loop.used_on_track.venue.name loop.used_on_track.title %}">
+                    <a href="{% url 'song' loop.used_on_track.venue.tour.url_slug loop.used_on_track.venue.url_slug loop.used_on_track.url_slug %}">
                         {{ loop.used_on_track.title }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        {% endif %}
-        {% if Drum_Fills.count > 0 %}
-            <h3>Drum Fill requests used on:</h3>
+        </div>
+    {% endif %}
+
+    {% if drumfill.count > 0 %}
+        <div>
+            <input type="checkbox" id="drumfill-checkbox">
+            <label for="drumfill-checkbox">&#10147;</label>
+            <h4>Drum Fill requests [{{ drumfill.count }}]</h4>
             <ul>
-                {% for fill in Drum_Fills %}
+                {% for fill in drumfill %}
                 <li>
-                    <a href="{% url 'song' fill.used_on_track.venue.tour.name fill.used_on_track.venue.name fill.used_on_track.title %}">
+                    <a href="{% url 'song' fill.used_on_track.venue.tour.url_slug fill.used_on_track.venue.url_slug fill.used_on_track.url_slug %}">
                         {{ fill.used_on_track.title }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        {% endif %}
-    </div>
-    <div>
-        {% if Drumkit.count > 0 %}
-            <h3>Drumkit requests used on:</h3>
+        </div>
+    {% endif %}
+
+    {% if drumkit.count > 0 %}
+        <div>
+            <input type="checkbox" id="drumkit-checkbox">
+            <label for="drumkit-checkbox">&#10147;</label>
+            <h4>Drumkit requests [{{ drumkit.count }}]</h4>
             <ul>
-                {% for kit in Drumkit %}
+                {% for kit in drumkit %}
                 <li>
-                    <a href="{% url 'song' kit.used_on_track.venue.tour.name kit.used_on_track.venue.name kit.used_on_track.title %}">
+                    <a href="{% url 'song' kit.used_on_track.venue.tour.url_slug kit.used_on_track.venue.url_slug kit.used_on_track.url_slug %}">
                         {{ kit.used_on_track.title }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        {% endif %}
-        {% if Sounds.count > 0 %}
-            <h3>Sounds requests used on:</h3>
+        </div>
+    {% endif %}
+
+    {% if sound.count > 0 %}
+        <div>
+            <input type="checkbox" id="sound-request-checkbox">
+            <label for="sound-request-checkbox">&#10147;</label>
+            <h4>Sound requests [{{ sound.count }}]</h4>
             <ul>
-                {% for sound in Sounds %}
+                {% for sound in sound %}
                 <li>
-                    <a href="{% url 'song' sound.used_on_track.venue.tour.name sound.used_on_track.venue.name sound.used_on_track.title %}">
+                    <a href="{% url 'song' sound.used_on_track.venue.tour.url_slug sound.used_on_track.venue.url_slug sound.used_on_track.url_slug %}">
                         {{ sound.used_on_track.title }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        {% endif %}
-        {% if Instruments.count > 0 %}
-            <h3>Instrument requests used on:</h3>
+        </div>
+    {% endif %}
+
+    {% if instrument.count > 0 %}
+        <div>
+            <input type="checkbox" id="instrument-checkbox">
+            <label for="instrument-checkbox">&#10147;</label>
+            <h4>Instrument requests [{{ instrument.count }}]</h4>
             <ul>
-                {% for instrument in Instruments %}
+                {% for instrument in instrument %}
                 <li>
-                    <a href="{% url 'song' instrument.used_on_track.venue.tour.name instrument.used_on_track.venue.name instrument.used_on_track.title %}">
+                    <a href="{% url 'song' instrument.used_on_track.venue.tour.url_slug instrument.used_on_track.venue.url_slug instrument.used_on_track.url_slug %}">
                         {{ instrument.used_on_track.title }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        {% endif %}
-        {% if Lyric_Inspiration.count > 0 %}
-            <h3>Lyric Inspirations used on:</h3>
+        </div>
+    {% endif %}
+
+    {% if lyric.count > 0 %}
+        <div>
+            <input type="checkbox" id="lyric-checkbox">
+            <label for="lyric-checkbox">&#10147;</label>
+            <h4>Lyric Inspirations [{{ lyric.count }}]</h4>
             <ul>
-                {% for lyric in Lyric_Inspiration %}
+                {% for lyric in lyric %}
                 <li>
-                    <a href="{% url 'song' lyric.used_on_track.venue.tour.name lyric.used_on_track.venue.name lyric.used_on_track.title %}">
+                    <a href="{% url 'song' lyric.used_on_track.venue.tour.url_slug lyric.used_on_track.venue.url_slug lyric.used_on_track.url_slug %}">
                         {{ lyric.used_on_track.title }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        {% endif %}
-    </div>
-    <div>
-        {% if Tours.count > 0 %}
-            <h3>Tours named:</h3>
+        </div>
+    {% endif %}
+
+    {% if Tours.count > 0 %}
+        <div>
+            <input type="checkbox" id="tour-checkbox">
+            <label for="tour-checkbox">&#10147;</label>
+            <h4>Tours named [{{ Tours.count }}]</h4>
             <ul>
                 {% for tour in Tours %}
                 <li>
-                    <a href="{% url 'tour' tour.name %}">
+                    <a href="{% url 'tour' tour.url_slug %}">
                         {{ tour.name }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        {% endif %}
-        {% if Venues.count > 0 %}
-            <h3>Venues named:</h3>
+        </div>
+    {% endif %}
+
+    {% if Venues.count > 0 %}
+        <div>
+            <input type="checkbox" id="venue-checkbox">
+            <label for="venue-checkbox">&#10147;</label>
+            <h4>Venues named [{{ Venues.count }}]</h4>
             <ul>
                 {% for venue in Venues %}
                 <li>
-                    <a href="{% url 'venue' venue.tour.name venue.name %}">
+                    <a href="{% url 'venue' venue.tour.url_slug venue.url_slug %}">
                         {{ venue.name }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        {% endif %}
-        {% if Songs.count > 0 %}
-            <h3>Songs named:</h3>
+        </div>
+    {% endif %}
+
+    {% if Songs.count > 0 %}
+        <div>
+            <input type="checkbox" id="song-checkbox">
+            <label for="song-checkbox">&#10147;</label>
+            <h4>Songs named [{{ Songs.count }}]</h4>
             <ul>
                 {% for song in Songs %}
                 <li>
-                    <a href="{% url 'song' song.venue.tour.name song.venue.name song.title %}">
+                    <a href="{% url 'song' song.venue.tour.url_slug song.venue.url_slug song.url_slug %}">
                         {{ song.title }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        {% endif %}
-        {% if Sounds_Named.count > 0 %}
-            <h3>Sounds named:</h3>
+        </div>
+    {% endif %}
+
+    {% if Sounds_Named.count > 0 %}
+        <div>
+            <input type="checkbox" id="sound-named-checkbox">
+            <label for="sound-named-checkbox">&#10147;</label>
+            <h4>Sounds named [{{ Sounds_Named.count }}]</h4>
             <ul>
                 {% for sound in Sounds_Named %}
                 <li>
@@ -188,18 +205,24 @@
                 </li>
                 {% endfor %}
             </ul>
-        {% endif %}
-        {% if Covers.count > 0 %}
-            <h3>Cover Images Found:</h3>
+        </div>
+    {% endif %}
+
+    {% if Covers.count > 0 %}
+        <div>
+            <input type="checkbox" id="cover-checkbox">
+            <label for="cover-checkbox">&#10147;</label>
+            <h4>Cover Images Found [{{ Covers.count }}]</h4>
             <ul>
                 {% for cover in Covers %}
                 <li>
-                    <a href="{% url 'venue' cover.venue.tour.name cove.venue.name %}">
+                    <a href="{% url 'venue' cover.venue.tour.url_slug cove.venue.url_slug %}">
                         {{ cover.title }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
+
 </article>

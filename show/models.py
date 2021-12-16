@@ -4,7 +4,7 @@ from mainsite.models import *
 from sounds.models   import *
 
 
-class RequestType(models.Model):
+class Command(models.Model):
     class Meta:
         app_label = 'show'
 
@@ -24,13 +24,13 @@ class Request(models.Model):
     class Meta:
         app_label = 'show'
 
-    request_type  = models.ForeignKey(RequestType, on_delete=models.CASCADE)
+    command       = models.ForeignKey(Command, on_delete=models.CASCADE)
     played_by     = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='played_by')
     requested_by  = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='requested_by')
-    text          = models.CharField(max_length=255, blank=True, null=True)
+    text          = models.TextField(blank=True, null=True)
     sound         = models.ForeignKey(Sound, on_delete=models.CASCADE, blank=True, null=True)
     instrument    = models.ForeignKey(Instrument, on_delete=models.CASCADE, blank=True, null=True)
-    used_on_track = models.ForeignKey(Song, on_delete=models.CASCADE, blank=True, null=True)
+    used_on_track = models.ForeignKey(Song, on_delete=models.CASCADE, blank=True, null=True, related_name='song_requests')
     created_at    = models.DateTimeField(auto_now_add=True)
     updated_at    = models.DateTimeField(auto_now=True)
 

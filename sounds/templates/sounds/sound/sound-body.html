@@ -13,7 +13,9 @@
 <ul>
     {% for r in requests %}
         <li>
-            <a href="{% url 'song' r.used_on_track.venue.tour.name r.used_on_track.venue.name r.used_on_track.title %}">
+            <a href="{% url 'song' r.used_on_track.venue.tour.url_slug
+                                   r.used_on_track.venue.url_slug
+                                   r.used_on_track.title %}">
                 "{{ r.used_on_track.title }} ({{ r.used_on_track.venue.date|date:"Y/m/d"}})</li>
             </a>
         </li>

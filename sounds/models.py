@@ -23,7 +23,7 @@ class SubCategory(models.Model):
         app_label = 'sounds'
 
     text       = models.CharField(max_length=255)
-    category   = models.ForeignKey(Category,  on_delete=models.CASCADE)
+    category   = models.ForeignKey(Category,  on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -41,10 +41,10 @@ class Sound(models.Model):
         app_label = 'sounds'
 
     code        = models.CharField(max_length=3)
-    name        = models.TextField()
+    name        = models.TextField(null=True, blank=True)
     renamed_by  = models.ForeignKey(User,  on_delete=models.CASCADE, null=True, blank=True)
-    category    = models.ForeignKey(Category,  on_delete=models.CASCADE)
-    subcategory = models.ForeignKey(SubCategory,  on_delete=models.CASCADE)
+    category    = models.ForeignKey(Category,  on_delete=models.CASCADE, null=True, blank=True)
+    subcategory = models.ForeignKey(SubCategory,  on_delete=models.CASCADE, null=True, blank=True)
     created_at  = models.DateTimeField(auto_now_add=True)
     updated_at  = models.DateTimeField(auto_now=True)
 
@@ -86,8 +86,8 @@ class Instrument(models.Model):
     class Meta:
         app_label = 'sounds'
 
-    code         = models.CharField(max_length=3, blank=True, null=True)
-    name         = models.TextField()
+    code         = models.CharField(max_length=3)
+    name         = models.TextField(blank=True, null=True)
     created_at   = models.DateTimeField(auto_now_add=True)
     updated_at   = models.DateTimeField(auto_now=True)
 

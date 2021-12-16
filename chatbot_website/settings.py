@@ -27,7 +27,7 @@ SECRET_KEY = config['DJANGO_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.89', '127.0.0.1', '.localhost' ]
+ALLOWED_HOSTS = ['sharp-swan-64.loca.lt', '192.168.1.89', '127.0.0.1', '.localhost' ]
 
 
 # Application definition
@@ -131,6 +131,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+USE_THOUSAND_SEPARATOR = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

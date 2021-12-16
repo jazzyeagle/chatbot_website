@@ -13,37 +13,39 @@ main {
     width:  100%;
 }
 
+main > * {
+    margin: 0 5%;
+}
+
 main h1, main h2, main h3 {
     text-align: center;
     margin-bottom: 2.0rem;
 }
 
 .row {
-    display: flex;
+    display:         flex;
 }
 
 label {
-    margin: auto 0.5rem;
-    text-align: right;
+    margin:          auto 0.5rem;
+    text-align:      right;
 }
 
-button, input, textarea, select {
-    border:        solid 0.1rem #967969;
-    border-radius: 0.3rem;
-    margin:        0.5rem 0;
-    padding:       0.2rem 0.5rem;
+button, input, textarea, select, fieldset {
+    border:          solid 0.1rem #967969;
+    border-radius:   0.3rem;
+    margin:          0.5rem 0;
+    padding:         0.2rem 0.5rem;
 }
 
 button:focus, input:focus, textarea:focus {
-    border-color: #A2E8DD;
-    box-shadow: 0.2rem 0.2rem #A2E8DD;
+    border-color:    #A2E8DD;
+    box-shadow:      0.2rem 0.2rem #A2E8DD;
 }
 
 
 table, thead, tbody {
     display:         block;
-    margin:          0 auto;
-    width:           80%;
     border-collapse: collapse;
 }
 
@@ -59,4 +61,12 @@ th, td {
 
 td {
     border:         solid 0.1rem #967969;
+}
+
+th {
+    text-align:     center;
+}
+
+ul {
+    list-style-type: none;
 }

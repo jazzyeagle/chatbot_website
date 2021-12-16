@@ -11,17 +11,17 @@
         {% for venue in venues %}
             <tr>
                 <td class="date">
-                    <a href="{% url 'venue' venue.tour.name venue.name %}">
+                    <a href="{% url 'venue' venue.tour.url_slug venue.url_slug %}">
                         {{ venue.date }}
                     </a>
                 </td>
                 <td class="venue">
-                    <a href="{% url 'venue' venue.tour.name venue.name %}">
+                    <a href="{% url 'venue' venue.tour.url_slug venue.url_slug %}">
                         {{ venue.name }}
                     </a>
                 </td>
                 <td class="tour">
-                    <a href="{% url 'tour' venue.tour.name %}">
+                    <a href="{% url 'tour' venue.tour.url_slug %}">
                         {{ venue.tour.name }}
                     </a>
                 </td>

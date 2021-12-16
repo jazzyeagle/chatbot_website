@@ -8,6 +8,7 @@ class Tour(models.Model):
         app_label = 'mainsite'
 
     name       = models.TextField()
+    url_slug   = models.TextField()
     named_by   = models.ForeignKey(User,  on_delete=models.CASCADE, blank=True, null=True)
     month      = models.DateField(unique_for_month=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -30,6 +31,7 @@ class Venue(models.Model):
         app_label = 'mainsite'
 
     name       = models.TextField()
+    url_slug   = models.TextField()
     named_by   = models.ForeignKey(User,  on_delete=models.CASCADE, blank=True, null=True)
     tour       = models.ForeignKey(Tour,  on_delete=models.CASCADE)
     date       = models.DateField(unique_for_date=True)
@@ -48,6 +50,14 @@ class Venue(models.Model):
                }
 
 
+class VenueSocials(models.Model):
+    venue          = models.ForeignKey(Venue, on_delete=models.CASCADE)
+    bandcamp       = models.TextField(blank=True, null=True)
+    bandcamp_bitly = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    
 class VenueArt(models.Model):
     class Meta:
         app_label = 'mainsite'
@@ -75,13 +85,17 @@ class Song(models.Model):
     class Meta:
         app_label = 'mainsite'
 
-    track_number = models.IntegerField()
-    title        = models.TextField()
-    named_by     = models.ForeignKey(User,  on_delete=models.CASCADE, blank=True, null=True)
-    venue        = models.ForeignKey(Venue,  on_delete=models.CASCADE)
-    length       = models.CharField(max_length=10)
-    created_at   = models.DateTimeField(auto_now_add=True)
-    updated_at   = models.DateTimeField(auto_now=True)
+    track_number    = models.IntegerField(blank=True, null=True)
+    title           = models.TextField()
+    url_slug        = models.TextField()
+    named_by        = models.ForeignKey(User,  on_delete=models.CASCADE, blank=True, null=True, related_name='songs_named')
+    commissioned_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='songs_commissioned')
+    venue           = models.ForeignKey(Venue,  on_delete=models.CASCADE)
+    length          = models.CharField(max_length=10, blank=True, null=True)
+    vod_notes       = models.TextField(blank=True, null=True)
+    
+    created_at      = models.DateTimeField(auto_now_add=True)
+    updated_at      = models.DateTimeField(auto_now=True)
 
     def serialize(self):
         requests = []
@@ -99,6 +113,14 @@ class Song(models.Model):
                  'created_at':  self.created_at,
                  'updated_at':  self.updated_at
                }
+
+
+class SongSocials(models.Model):
+    song        = models.ForeignKey(Song, on_delete=models.CASCADE)
+    youtube     = models.TextField(blank=True, null=True)
+    created_at  = models.DateTimeField(auto_now_add=True)
+    updated_at  = models.DateTimeField(auto_now=True)
+    
 
 
 class SongRating(models.Model):
