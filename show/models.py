@@ -28,7 +28,7 @@ class Request(models.Model):
     played_by     = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='played_by')
     requested_by  = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='requested_by')
     text          = models.TextField(blank=True, null=True)
-    sound         = models.ForeignKey(Sound, on_delete=models.CASCADE, blank=True, null=True)
+    sound         = models.ForeignKey(Sound, on_delete=models.CASCADE, blank=True, null=True, related_name='requests')
     instrument    = models.ForeignKey(Instrument, on_delete=models.CASCADE, blank=True, null=True)
     used_on_track = models.ForeignKey(Song, on_delete=models.CASCADE, blank=True, null=True, related_name='song_requests')
     created_at    = models.DateTimeField(auto_now_add=True)

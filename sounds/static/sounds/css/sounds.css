@@ -30,7 +30,7 @@ td .name {
     text-align: center;
 }
 
-.request {
+.request, .num-times, .last-used {
     flex: 1;
 }
 

@@ -1,5 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.models       import Q, Avg
+from django.db.models       import Q, Avg, Count, Max
 
 from users.models           import User
 from show.models            import *
@@ -14,16 +14,21 @@ def sounds(request):
             category = Category.objects.get(text=search['search_category'])
             sounds = Sound.objects.filter(Q(name__icontains=search['text_filter']) |
                                           Q(code__icontains=search['text_filter']),
-                                          category=category).annotate(avg_rating=Avg('ratings__rating')).order_by('name')
+                                          category=category)
         else:
             sounds = Sound.objects.filter(Q(name__icontains=search['text_filter']) |
-                                          Q(code__icontains=search['text_filter'])).annotate(avg_rating=Avg('ratings__rating')).order_by('name')
+                                          Q(code__icontains=search['text_filter']))
         ratings = {}
         request.session.pop('search')
     else:
-        sounds = Sound.objects.all().annotate(avg_rating=Avg('ratings__rating')).order_by('name')[:100]
+        sounds = Sound.objects.all().annotate(avg_rating=Avg('ratings__rating'))
+        
+    sounds = sounds.annotate(avg_rating=Avg('ratings__rating'),
+                             num_times_used = Count('requests'),
+                             last_used      = Max('requests__used_on_track__venue__date')).order_by('name')[:10]
+    
     for s in sounds:
-        print(f'{s.name} [{s.code}]: {s.avg_rating}')
+        print(f'{s.name} [{s.code}]: {s.avg_rating} {s.num_times_used} {s.last_used}')
     if 'user_id' in request.session:
         user = User.objects.get(id=request.session['user_id'])
     else:

@@ -26,6 +26,8 @@
             <!--<th class="demo">Demo</th>-->
             <th class="category">Category</th>
             <th class="subcategory">SubCategory</th>
+            <th class="num-times"># Times Used</th>
+            <th class="last-used">Last Used</th>
             <th class="request">Request</th>
             <th class="rating">Rating</th>
         </tr>
@@ -41,6 +43,14 @@
                 <!--<td class="demo"><audio></audio></td>-->
                 <td class="category">{{sound.category.text}}</td>
                 <td class="subcategory">{{sound.subcategory.text}}</td>
+                <td class="num-times">{{ sound.num_times_used }}</td>
+                <td class="last-used">
+                    {% if sound.last_used is None %}
+                        Never
+                    {% else %}
+                        {{ sound.last_used }}
+                    {% endif %}
+                </td>
                 <td class="request">
                     {% if sound.category.text == "Drum Kit" %}
                         !drumkit {{sound.code}}
