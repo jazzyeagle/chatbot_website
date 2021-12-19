@@ -8,7 +8,7 @@ class Tour(models.Model):
         app_label = 'mainsite'
 
     name       = models.TextField()
-    url_slug   = models.TextField()
+    url_slug   = models.TextField(blank=True, null=True)
     named_by   = models.ForeignKey(User,  on_delete=models.CASCADE, blank=True, null=True)
     month      = models.DateField(unique_for_month=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -31,7 +31,7 @@ class Venue(models.Model):
         app_label = 'mainsite'
 
     name       = models.TextField()
-    url_slug   = models.TextField()
+    url_slug   = models.TextField(blank=True, null=True)
     named_by   = models.ForeignKey(User,  on_delete=models.CASCADE, blank=True, null=True)
     tour       = models.ForeignKey(Tour,  on_delete=models.CASCADE)
     date       = models.DateField(unique_for_date=True)
@@ -87,7 +87,7 @@ class Song(models.Model):
 
     track_number    = models.IntegerField(blank=True, null=True)
     title           = models.TextField()
-    url_slug        = models.TextField()
+    url_slug        = models.TextField(blank=True, null=True)
     named_by        = models.ForeignKey(User,  on_delete=models.CASCADE, blank=True, null=True, related_name='songs_named')
     commissioned_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='songs_commissioned')
     venue           = models.ForeignKey(Venue,  on_delete=models.CASCADE)
