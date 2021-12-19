@@ -1,6 +1,20 @@
-<p>Live from "{{ song.venue.name }}" on the "{{ song.venue.tour.name }}" Tour...</p>
-<h1>{{ song.title }}</h1>
-<h2>Named by {{ song.named_by.username }}</h2>
+{% load static %}
+<header>
+    <a href="{% url 'venue' song.venue.tour.url_slug song.venue.url_slug %}" class="type">
+        <img src="{% static 'img/'|add:song.venue.tour.name|add:'/'|add:song.venue.name|add:'/cover.png' %}"
+             alt="Album Cover for '{{ song.venue.name }}'"
+             class="album_cover">
+    </a>
+    <div class="value">
+        <p>Live from "{{ song.venue.name }}" on the "{{ song.venue.tour.name }}" Tour...</p>
+        <h1>{{ song.title }}</h1>
+        <h2>Named by {{ song.named_by.username }}</h2>
+    </div>
+    <a href="https://www.youtube.com/watch?v={{ song.socials.youtube }}" class="type">
+        <img src="https://img.youtube.com/vi/{{ song.socials.youtube }}/0.jpg"
+             class="video">
+    </a>
+</header>
 <h3>Requested Song Details</h3>
 <table id="details">
     <thead>

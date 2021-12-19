@@ -116,7 +116,7 @@ class Song(models.Model):
 
 
 class SongSocials(models.Model):
-    song        = models.ForeignKey(Song, on_delete=models.CASCADE)
+    song        = models.OneToOneField(Song, on_delete=models.CASCADE, related_name='socials')
     youtube     = models.TextField(blank=True, null=True)
     created_at  = models.DateTimeField(auto_now_add=True)
     updated_at  = models.DateTimeField(auto_now=True)

@@ -16,6 +16,15 @@ main h3 {
     margin-bottom: 1.0rem;
 }
 
+main header {
+    background-color: white;
+    display: flex;
+}
+
+main header h1 {
+    text-align: center;
+}
+
 .type {
     flex: 1;
 }
@@ -27,4 +36,14 @@ main h3 {
 
 .user {
     flex: 2;
+}
+
+.video {
+    width: 20rem;
+    height: 12rem;
+}
+
+.album_cover {
+    width: 12rem;
+    height: 12rem;
 }
