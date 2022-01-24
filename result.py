@@ -14,6 +14,7 @@ class Result:
     # resultValue is either the successfully computed value OR the error message
     def __init__(self, resultType, resultValue):
         self.resultType  = resultType
+        self.errors = []
         if resultType == ResultFlag.Ok:
             self.value       = resultValue
         else:

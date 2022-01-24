@@ -27,7 +27,8 @@ SECRET_KEY = config['DJANGO_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sharp-swan-64.loca.lt', '192.168.1.89', '127.0.0.1', '.localhost' ]
+#ALLOWED_HOSTS = ['jazzyeagle.freeddns.org', '192.168.1.89', '127.0.0.1', '.localhost' ]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -35,6 +36,7 @@ ALLOWED_HOSTS = ['sharp-swan-64.loca.lt', '192.168.1.89', '127.0.0.1', '.localho
 INSTALLED_APPS = [
     'users',
     'mainsite',
+    'chatbot',
     'sounds',
     'show',
     'django.contrib.auth',
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +75,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'chatbot_website.wsgi.application'
+#WSGI_APPLICATION = 'chatbot_website.wsgi.application'
+ASGI_APPLICATION = 'chatbot_website.asgi.application'
 
 
 # Database
